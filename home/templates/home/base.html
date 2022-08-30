@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Home</title>
+	<link rel="stylesheet" href="{% static 'home/style.css' %}">
+</head>
+<body>
+	<h1>This is my fucking Homepage</h1>
+	<div class = "Menu">
+		<ul>
+			<li><a href="{% url 'userAccount:loginUser' %}">Dang Nhap</a></li>
+			<li><a href="{% url 'userAccount:registerUser' %}">Dang Ky</a></li>
+			<li><a href="{% url 'mangaApp:home' %}">Doc Truyen</a></li>
+			<li>Coi Phim</li>
+		</ul>
+	</div>
+
+	<div class = "script">
+		{% block script %}
+
+		{% endblock %}
+	</div>
+
+	<div class = "content">
+		{% block content %}
+
+		{% endblock %}
+	</div>
+
+	<a href="{% url 'homepage:home' %}">Back To Homepage</a>
+</body>
+</html>

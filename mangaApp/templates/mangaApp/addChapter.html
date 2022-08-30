@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+    {% block script %}
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $(".mangaAutocomplete").autocomplete({
+                    source: '{% url 'mangaApp:mangaAutocomplete' %}',
+                    minLength: 0,
+                });
+
+                $( "#mangaName1" ).autocomplete({
+                    source: '{% url 'mangaApp:mangaAutocomplete' %}',
+                    minLength: 0,
+                });
+            } );
+        </script>
+    {% endblock %}
+
+	{% block content %}
+        <h2>Add Multiple Chapters</h2>
+        <form action="{% url 'mangaApp:addChapter' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{mangaPackForm.as_p}}
+
+            <input type="submit">
+        </form>
+
+        <h2>Add Single Chapter</h2>
+        <form action="{% url 'mangaApp:addChapter' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{chapForm.as_p}}
+
+            <input type="submit">
+        </form>
+
+	{% endblock %}

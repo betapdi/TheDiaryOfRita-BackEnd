@@ -1,0 +1,9 @@
+{% extends 'home/base.html' %}
+	{% block content %}
+        <form action="{% url 'mangaApp:addManga' %}" method="POST">
+            {% csrf_token %}
+            {{addMangaForm.as_p}}
+
+            <input type="submit">
+        </form>
+	{% endblock %}

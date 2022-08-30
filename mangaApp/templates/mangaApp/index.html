@@ -1,0 +1,13 @@
+{% extends 'home/base.html' %}
+	{% block content %}
+        <div><a href="{% url 'mangaApp:addManga' %}">Add Manga</a></div>
+        <div><a href="{% url 'mangaApp:addChapter' %}">Add Chapter</a></div>
+        {% for manga in mangaList %}
+            <a href = "{{manga.id}}/">{{manga.name}}</a>
+            <ul>
+                {% for chapter in manga.chapter.all %}
+                        <li><a href="{{manga.id}}/{{chapter.id}}/">{{chapter.index}}</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+	{% endblock %}

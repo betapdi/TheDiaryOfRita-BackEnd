@@ -1,0 +1,15 @@
+{% extends 'home/base.html' %}
+	{% block content %}
+        <div>
+                <a href="{% url 'mangaApp:chapterDetails' mangaId prevChap %}">Previous Chapter</a>
+                <a href="{% url 'mangaApp:chapterDetails' mangaId nextChap %}">Next Chapter</a>
+        </div>
+        {% for pic in chapter.image.all %}
+                <p><img src="{{pic.image.url}}" alt=""></p>
+        {% endfor %}
+
+        <div>
+                <a href="{% url 'mangaApp:chapterDetails' mangaId prevChap %}">Previous Chapter</a>
+                <a href="{% url 'mangaApp:chapterDetails' mangaId nextChap %}">Next Chapter</a>
+        </div>
+	{% endblock %}
