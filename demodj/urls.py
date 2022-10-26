@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('user/', include('userAccount.urls')),
     path('manga/', include('mangaApp.urls')),
+    path('api/', include('mangaApp.api.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
