@@ -1,19 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { Formik, Form, FastField } from 'formik' //Remember to use 'Form' of formik instead of reactstrap
-import TextField from '../../../../custom-fields/TextField'
-import SelectField from '../../../../custom-fields/SelectField'
-import { TESTING_OPTIONS } from '../../../../constances/dev-mode/options'
-import { Button, FormGroup } from 'reactstrap'
+import { FastField, Form, Formik } from 'formik'; //Remember to use 'Form' of formik instead of reactstrap
+import { Button, FormGroup } from 'reactstrap';
+import { TESTING_OPTIONS } from '../../../../constances/dev-mode/options';
+import SelectField from '../../../../custom-fields/SelectField';
+import TextField from '../../../../custom-fields/TextField';
 
-import * as Yup from 'yup'
+import * as Yup from 'yup';
+import FileChooser from '../../../../custom-fields/FileChooser';
 
 const AddMangaForm = (props) => {
   const initialValues = {
     mangaName: '', //for empty string
     description: '',
     categories: null, //for options, actions
+    cover_image: null,
   }
 
   const validationSchema = Yup.object().shape({
@@ -34,7 +36,7 @@ const AddMangaForm = (props) => {
         //do something here...
 
         const  { values, errors, touched } = formikProps;
-        console.log({ values, errors, touched })
+        // console.log({ values, errors, touched })
 
         return (
           //Field will rerender when the other or itself was touched, FastField won't
@@ -64,6 +66,15 @@ const AddMangaForm = (props) => {
               placeholder = "Choose your manga's categories"
               type = "multiple"
               options = {TESTING_OPTIONS}
+            />
+
+            <FastField
+              name = "cover_image"
+              type = "file"
+              component = {FileChooser}
+
+              label = "FileChooser"
+              accept = "image/*"
             />
 
             <FormGroup>
