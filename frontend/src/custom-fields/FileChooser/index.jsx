@@ -25,6 +25,8 @@ const FileChooser = (props) => {
         type = {type}
         onChange = {(e) => handleSelectedOptionsChange(e)}
 
+        
+        accept = "image/*"
         className = {showError ? 'is-invalid' : ''}
       />
 

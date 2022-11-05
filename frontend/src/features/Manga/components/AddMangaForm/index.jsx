@@ -74,7 +74,6 @@ const AddMangaForm = (props) => {
               component = {FileChooser}
 
               label = "FileChooser"
-              accept = "image/*"
             />
 
             <FormGroup>
