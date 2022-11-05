@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "django-html",
+        "random": "cpp"
+    },
+
+    "editor.tabSize": 2
+}

@@ -1,0 +1,8 @@
+{% extends 'home/base.html' %}
+	{% block content %}
+        <h1>MY FUCKING MANGA PAGE</h1>
+        <h3>This fucking Manga is {{manga.name}} </h3>
+        {% for chapter in manga.chapter.all %}
+                <a href="{{chapter.id}}/">Chapter {{chapter.index}}</a>
+        {% endfor %}
+	{% endblock %}
