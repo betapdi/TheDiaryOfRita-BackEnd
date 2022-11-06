@@ -9,9 +9,9 @@ const MainPage = () => {
     const fetchMangaList = async () => {
       try {
         const response = await mangaApi.getAll()
-        // console.log(response)
+        console.log(response)
       } catch (error) {
-        // console.log("Failed to fetch manga list: ", error)
+        console.log("Failed to fetch manga list: ", error)
       }
     }
 

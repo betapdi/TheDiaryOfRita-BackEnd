@@ -7,22 +7,23 @@ import InputField from '../../../../custom-fields/InputField';
 
 const LoginForm = (props) => {
   const initialValues = {
-    userName: '', //for empty string
+    username: '',
     password: '',
   }
 
   return (
     <Formik
       initialValues = {initialValues}
+      onSubmit = {props.onSubmit}
     >
       {formikProps => {
         const {values, errors, touched } = formikProps
-        console.log({values, errors, touched })
+        // console.log({values, errors, touched })
 
         return (
           <Form>
             <FastField
-              name = "userName"
+              name = "username"
               component = {InputField}
 
               label = "Username"
@@ -38,9 +39,9 @@ const LoginForm = (props) => {
               placeholder = "Input your password"
             />
 
-            {/* <FormGroup>
+            <FormGroup>
               <Button type = "submit" color = "primary">Login</Button>
-            </FormGroup> */}
+            </FormGroup>
           </Form>
         )
       }}
