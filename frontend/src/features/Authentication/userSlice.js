@@ -1,17 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import userApi from '../../api/userApi'
-import queryString from 'query-string'
+import jwt_decode from "jwt-decode"
 
 const user = createSlice({
   name: 'user',
-  initialState: {tokens: null, user: null},
+  initialState: {
+    authTokens: localStorage.getItem('authTokens'),
+    user: (localStorage.getItem('authTokens') ? jwt_decode((JSON.parse(localStorage.getItem('authTokens'))).access) : null)
+  },
+
   reducers: {
     loginUser: async (state, action) => {
       try {
-        console.log(queryString.stringify(action.payload))
         const response = await userApi.login(action.payload)
-        // const data = await response.json()
-        console.log(response)
+        state = {
+          authTokens: response,
+          user: jwt_decode(response.access)
+        }
+        localStorage.setItem('authTokens', JSON.stringify(response))
       } catch (error) {
         console.log("Failed to login: ", error)
       }

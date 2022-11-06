@@ -6,8 +6,10 @@ import { loginUser } from '../../userSlice'
 
 const LoginPage = () => {
   const dispatch = useDispatch()
+  
   const handleSubmit = (values) => {
     console.log('Form submit: ', values)
+
     const action = loginUser(values)
     dispatch(action)
   }
