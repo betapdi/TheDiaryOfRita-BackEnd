@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { FormFeedback, FormGroup, Input, Label } from 'reactstrap'
 import { ErrorMessage } from 'formik'
 
-const TextField = (props) => {
+const InputField = (props) => {
   const {
     field, form, //props of fastfield
     type, label, placeholder, disabled, //our props
@@ -37,7 +37,7 @@ const TextField = (props) => {
   )
 }
 
-TextField.propTypes = {
+InputField.propTypes = {
   field: PropTypes.object.isRequired,
   form: PropTypes.object.isRequired,
 
@@ -47,11 +47,11 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
 }
 
-TextField.defaultProps = {
+InputField.defaultProps = {
   type: 'text',
   label: '',
   placeholder: '',
   disabled: false,
 }
 
-export default TextField
+export default InputField

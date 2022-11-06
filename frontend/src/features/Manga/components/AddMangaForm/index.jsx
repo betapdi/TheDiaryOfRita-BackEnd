@@ -5,7 +5,7 @@ import { FastField, Form, Formik } from 'formik'; //Remember to use 'Form' of fo
 import { Button, FormGroup } from 'reactstrap';
 import { TESTING_OPTIONS } from '../../../../constances/dev-mode/options';
 import SelectField from '../../../../custom-fields/SelectField';
-import TextField from '../../../../custom-fields/TextField';
+import InputField from '../../../../custom-fields/InputField';
 
 import * as Yup from 'yup';
 import FileChooser from '../../../../custom-fields/FileChooser';
@@ -44,7 +44,7 @@ const AddMangaForm = (props) => {
           <Form>
             <FastField
               name = "mangaName"
-              component = {TextField}
+              component = {InputField}
 
               label = "Manga Name"
               placeholder = "Eg: Han Deep Try..."
@@ -52,7 +52,7 @@ const AddMangaForm = (props) => {
 
             <FastField
               name = "description"
-              component = {TextField}
+              component = {InputField}
 
               label = "Description"
               placeholder = "Eg: Han Deep Try..."

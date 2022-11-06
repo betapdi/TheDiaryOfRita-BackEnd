@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import Authentication from './features/Authentication'
 const Manga = React.lazy(() => import('./features/Manga'));
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Header />
         <BrowserRouter>
           <Routes>
-            <Route path = "/" element={<Navigate to="/manga" replace />} />
+            <Route path = "/" element = {<Navigate to = "/manga" replace />} />
             <Route path = "manga/*" element = {<Manga />} />
+            <Route path = "auth/*" element = {<Authentication />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
