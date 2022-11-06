@@ -20,6 +20,7 @@ Django request types:\
     - Check models in mangaApp/models.py
 
 React modules:\
+    - npm install jwt-decode\
     - npm install axios\
     - npm install query-string\
     - npm install react-redux\
