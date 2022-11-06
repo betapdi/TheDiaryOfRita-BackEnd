@@ -1,30 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import userApi from '../../api/userApi'
 import jwt_decode from "jwt-decode"
 
+const initialState = {
+  authTokens: localStorage.getItem('authTokens'),
+  user: (localStorage.getItem('authTokens') ? jwt_decode((JSON.parse(localStorage.getItem('authTokens'))).access) : null)
+}
+
+export const loginUser = createAsyncThunk(
+  'user/loginUser',
+  async (formData) => {
+    const response = await userApi.login(formData)
+    return response
+  }
+);
+
 const user = createSlice({
   name: 'user',
-  initialState: {
-    authTokens: localStorage.getItem('authTokens'),
-    user: (localStorage.getItem('authTokens') ? jwt_decode((JSON.parse(localStorage.getItem('authTokens'))).access) : null)
-  },
+  initialState,
 
   reducers: {
-    loginUser: async (state, action) => {
-      try {
-        const response = await userApi.login(action.payload)
-        state = {
-          authTokens: response,
-          user: jwt_decode(response.access)
-        }
-        localStorage.setItem('authTokens', JSON.stringify(response))
-      } catch (error) {
-        console.log("Failed to login: ", error)
-      }
+    
+  },
+
+  extraReducers: {
+    [loginUser.fulfilled]: (state, action) => {
+      localStorage.setItem('authTokens', JSON.stringify(action.payload))
+      state.authTokens = action.payload;
+      state.user = jwt_decode(action.payload.access)
     }
   }
 })
 
 const { reducer, actions } = user
-export const { loginUser } = actions
+export const { } = actions
 export default reducer
