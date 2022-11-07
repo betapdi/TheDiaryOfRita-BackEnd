@@ -24,7 +24,9 @@ const AddMangaForm = (props) => {
       description: Yup.string().required('This field is required.'),
 
       categories: Yup.array().min(1, 'This field need at least 1 item').required('This field is required.').nullable(),
-  })
+  
+      cover_image: Yup.string().required("This field is required").nullable(),
+    })
 
   return (
     <Formik 
