@@ -15,8 +15,8 @@ function App() {
   return (
     <div className= "manga-app">
       <Suspense fallback = {<div>Loading...</div>}>
-        <Header />
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path = "/" element = {<Navigate to = "/manga" replace />} />
             <Route path = "manga/*" element = {<Manga />} />
