@@ -19,7 +19,7 @@ const MainPage = () => {
   }, [])
 
   const mangas = useSelector(state => state.mangas)
-  // console.log('List of mangas: ', mangas)
+  console.log('List of mangas: ', mangas)
 
   return (
     <div className = "main-page">
