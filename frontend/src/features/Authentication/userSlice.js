@@ -51,10 +51,6 @@ const user = createSlice({
       state.authTokens = action.payload;
       state.user = jwt_decode(action.payload.access)
     },
-
-    [updateToken.rejected]: (state, action) => {
-      console.log(action.payload)
-    }
   }
 })
 
