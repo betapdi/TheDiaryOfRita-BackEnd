@@ -10,6 +10,10 @@ const mangaApi = {
     const url = `manga/${id}/`
     return axiosClient.get(url)
   },
+
+  getAllCategories: () => {
+    const url = '/'
+  },
 }
 
 export default mangaApi;

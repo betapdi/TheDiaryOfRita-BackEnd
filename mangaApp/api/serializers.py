@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category
 
 #Manga needed serializer
 class MangaSerializer(ModelSerializer):
@@ -17,7 +17,10 @@ class PictureSerializer(ModelSerializer):
         model = Picture
         fields = ['id', 'image']
         
-
+class CategorySerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
 
 #Manga optional serializer
 class FavouriteMangaSerializer(ModelSerializer):

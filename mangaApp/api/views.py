@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga
-from .serializers import ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category
+from .serializers import ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer
 from django.core.files.images import ImageFile
 from django.core.files.base import ContentFile
 from django.core.files import File as DjangoFile
@@ -127,6 +127,19 @@ def handleUploadedChapter(myZipFile, chapterIndex):
         
         for i in range(len(files)):
             Picture.objects.create(chapter = chapterIndex, image = ImageFile(data_zip.open(files[i])))
+            
+            
+            
+            
+####### Categories Handling #######
+@api_view(['GET'])
+def getCategoryList(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many = True)
+    return Response(serializer.data)
+    
+            
+            
             
 ####### Favourite Manga Handling #######
 @api_view(['GET'])
