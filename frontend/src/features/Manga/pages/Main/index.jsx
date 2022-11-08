@@ -7,16 +7,16 @@ const MainPage = () => {
   const mangas = useSelector(state => state.mangas)
   console.log('List of mangas: ', mangas)
 
-  const viewImage = (file, index) => {
-    let reader = new FileReader();
-    let image = document.getElementById("manga_cover_" + index); 
-    reader.onload = (e) => {
-      image.src = e.target.result;
-    }
-    reader.readAsDataURL(file);
- }
-
   useEffect(() =>  {
+    const viewImage = (file, index) => {
+      let reader = new FileReader();
+      let image = document.getElementById("manga_cover_" + index); 
+      reader.onload = (e) => {
+        image.src = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    }
+
     const previewAllImage = () => {
       mangas.map((manga, index) => {
         viewImage(manga.cover_image, index);
@@ -44,7 +44,7 @@ const MainPage = () => {
         <div key={index}>
           {manga.mangaName}
           {manga.description}
-          <img id={"manga_cover_" + index} />
+          <img id={"manga_cover_" + index} width={"500px"} height={"500px"}/>
         </div>
       ))}
     </div>
