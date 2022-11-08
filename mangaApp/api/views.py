@@ -36,10 +36,22 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
-        'GET /api',
-        'GET /api/mangas',
-        'GET /api/manga/:id',
-        'POST /api/mangas/newManga',
+        'GET /api/',
+        'GET /api/mangaApp/mangaList/',
+        'POST /api/mangaApp/newManga/',
+        'DELETE /api/mangaApp/:id/delete/',
+        'GET /api/mangaApp/:id',
+        '################################################',
+        'GET /api/mangaApp/:id/chapterList/',
+        'POST /api/mangaApp/:id/chapter/upload/',
+        'POST /api/mangaApp/:id/chapter/uploadMulti/',
+        'GET /api/mangaApp/:id/:chapterId',
+        '################################################',
+        'GET /api/mangaApp/favourites/',
+        'POST /api/mangaApp/favourites/add/',
+        'DELETE /api/mangaApp/favourites/remove/',
+        '################################################',
+        'GET /api/mangaApp/categoryList/',
     ]
     
     return Response(routes)
@@ -161,7 +173,7 @@ def addFavouriteManga(request):
     serializer = FavouriteMangaSerializer(favoMangas, many = False)
     return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def removeFavouriteManga(request):
     user = request.user
