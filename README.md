@@ -13,6 +13,7 @@ Django modules:\
 
 Django server initialization:\
     - python manage.py runserver\
+    - Create superuser: python manage.py createsuperuser
     - **Remember to run server in django project**
 
 Django request types:\
