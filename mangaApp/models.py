@@ -33,16 +33,23 @@ class Chapter(models.Model):
 		return self.chapterZipData.name
 
 class Picture(models.Model):
-    chapter = models.ForeignKey(Chapter, on_delete = models.CASCADE, blank = True, null = True, related_name = 'image')
-    image = models.FileField(null = True)
+	chapter = models.ForeignKey(Chapter, on_delete = models.CASCADE, blank = True, null = True, related_name = 'image')
+	image = models.FileField(null = True)
+	
+	def __str__(self):
+		return self.image.name
     
-    def __str__(self):
-        return self.image.name
-    
-    
+class Category(models.Model):
+	mangas = models.ManyToManyField(Manga, blank = True)
+	name = models.CharField(max_length = 30)
+
+	def __str__(self):
+		return self.name	
+   
+
     
 #Manga optional models
 class FavouriteManga(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'favourMangas')
-    mangas = models.ManyToManyField(Manga, blank = True)
+	user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'favourMangas')
+	mangas = models.ManyToManyField(Manga, blank = True)
     
