@@ -2,17 +2,18 @@ import axiosClient from "./axiosClient"
 
 const mangaApi = {
   getAll: (params) => {
-    const url = '/mangas/'
+    const url = '/mangaApp/mangaList/'
     return axiosClient.get(url, { params })
   },
 
   get: (id) => {
-    const url = `manga/${id}/`
+    const url = `/mangaApp/${id}/`
     return axiosClient.get(url)
   },
 
   getAllCategories: () => {
-    const url = '/'
+    const url = '/categoryList/'
+    return axiosClient.get(url)
   },
 }
 

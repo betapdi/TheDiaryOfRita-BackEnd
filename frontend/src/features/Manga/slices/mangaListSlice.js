@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const manga = createSlice({
-  name: 'mangas',
+const mangaList = createSlice({
+  name: 'mangaList',
   initialState: [],
   reducers: {
     addManga: (state, action) => {
@@ -10,6 +10,6 @@ const manga = createSlice({
   }
 })
 
-const { reducer, actions } = manga
+const { reducer, actions } = mangaList
 export const { addManga } = actions
 export default reducer

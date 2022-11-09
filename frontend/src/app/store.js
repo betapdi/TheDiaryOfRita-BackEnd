@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import mangaReducer from "../features/Manga/mangaSlice"
+import mangaReducer from "../features/Manga/slices/mangaListSlice"
 import userReducer from "../features/Authentication/userSlice"
 
 const rootReducer = {
-  mangas: mangaReducer,
+  mangaList: mangaReducer,
   userData: userReducer,
 }
 
