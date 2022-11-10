@@ -12,7 +12,7 @@ const mangaApi = {
   },
 
   getAllCategories: () => {
-    const url = '/categoryList/'
+    const url = '/mangaApp/categoryList/'
     return axiosClient.get(url)
   },
 }

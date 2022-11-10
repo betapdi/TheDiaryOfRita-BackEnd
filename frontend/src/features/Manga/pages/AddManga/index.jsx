@@ -2,10 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import Banner from '../../../../components/Banner'
-import SlideShow from '../../../../components/SlideShow'
 import AddMangaForm from '../../components/AddMangaForm'
-import { addManga } from '../../mangaSlice'
+import { addManga } from '../../slices/mangaListSlice'
 
 const AddMangaPage = () => {
   const dispatch = useDispatch()

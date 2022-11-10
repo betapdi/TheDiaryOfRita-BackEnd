@@ -9,8 +9,24 @@ import InputField from '../../../../custom-fields/InputField';
 
 import * as Yup from 'yup';
 import FileChooser from '../../../../custom-fields/FileChooser';
+import { useEffect } from 'react';
+import { getCategoryList } from '../../slices/categorySlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AddMangaForm = (props) => {
+  //fetch needded data
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const fetchCategoryList = async () => {
+      dispatch(getCategoryList())
+    }
+
+    fetchCategoryList()
+  }, [])
+
+  const CATEGORY_OPTIONS = useSelector(state => state.categoryList)  
+
   const initialValues = {
     mangaName: '', //for empty string
     description: '',
@@ -29,62 +45,68 @@ const AddMangaForm = (props) => {
     })
 
   return (
-    <Formik 
-      initialValues = {initialValues}
-      validationSchema = {validationSchema}
-      onSubmit = {props.onSubmit}
-    >
-      {formikProps => {
-        //do something here...
+    <div>
+      {CATEGORY_OPTIONS.length == 0 &&
+        <Formik 
+          initialValues = {initialValues}
+          validationSchema = {validationSchema}
+          onSubmit = {props.onSubmit}
+        >
+          {formikProps => {
+            //do something here...
 
-        const  { values, errors, touched } = formikProps;
-        // console.log({ values, errors, touched })
+            const  { values, errors, touched } = formikProps;
+            console.log(CATEGORY_OPTIONS)
+            console.log(TESTING_OPTIONS)
+            // console.log({ values, errors, touched })
 
-        return (
-          //Field will rerender when the other or itself was touched, FastField won't
-          //For details: Field will be dependent, FastField is independent
-          <Form>
-            <FastField
-              name = "mangaName"
-              component = {InputField}
+            return (
+              //Field will rerender when the other or itself was touched, FastField won't
+              //For details: Field will be dependent, FastField is independent
+              <Form>
+                <FastField
+                  name = "mangaName"
+                  component = {InputField}
 
-              label = "Manga Name"
-              placeholder = "Eg: Han Deep Try..."
-            />
+                  label = "Manga Name"
+                  placeholder = "Eg: Han Deep Try..."
+                />
 
-            <FastField
-              name = "description"
-              component = {InputField}
+                <FastField
+                  name = "description"
+                  component = {InputField}
 
-              label = "Description"
-              placeholder = "Eg: Han Deep Try..."
-            />
+                  label = "Description"
+                  placeholder = "Eg: Han Deep Try..."
+                />
 
-            <FastField
-              name = "categories"
-              component = {SelectField}
+                <FastField
+                  name = "categories"
+                  component = {SelectField}
 
-              label = "Categories"
-              placeholder = "Choose your manga's categories"
-              type = "multiple"
-              options = {TESTING_OPTIONS}
-            />
+                  label = "Categories"
+                  placeholder = "Choose your manga's categories"
+                  type = "multiple"
+                  options = {CATEGORY_OPTIONS}
+                />
 
-            <FastField
-              name = "cover_image"
-              type = "file"
-              component = {FileChooser}
+                <FastField
+                  name = "cover_image"
+                  type = "file"
+                  component = {FileChooser}
 
-              label = "FileChooser"
-            />
+                  label = "FileChooser"
+                />
 
-            <FormGroup>
-              <Button type = "submit" color = "primary">Add new Manga</Button>
-            </FormGroup>
-          </Form>
-        )
-      }}
-    </Formik>
+                <FormGroup>
+                  <Button type = "submit" color = "primary">Add new Manga</Button>
+                </FormGroup>
+              </Form>
+            )
+          }}
+        </Formik>
+      }
+    </div>
   )
 }
 

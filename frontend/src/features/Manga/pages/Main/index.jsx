@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import mangaApi from '../../../../api/mangaApi'
+import { getCategoryList } from '../../slices/categorySlice'
 
 const MainPage = () => {
-  const [mangaList, setMangaList] = useState([])
-  const mangas = useSelector(state => state.mangas)
+  const dispatch = useDispatch()
+  
+  //Fetch needed data
+  useEffect(() => {
+    const fetchMangaList = async () => {
+      try {
+        const response = await mangaApi.getAll()
+        console.log(response)
+      } catch (error) {
+        console.log("Failed to fetch manga list: ", error)
+      }
+    }
+
+    fetchMangaList()
+  }, [])
+
+  const mangas = useSelector(state => state.mangaList)
   console.log('List of mangas: ', mangas)
 
   useEffect(() =>  {
@@ -25,19 +41,6 @@ const MainPage = () => {
 
     previewAllImage();
   }, [mangas])
-
-  useEffect(() => {
-    const fetchMangaList = async () => {
-      try {
-        const response = await mangaApi.getAll()
-        console.log(response)
-      } catch (error) {
-        console.log("Failed to fetch manga list: ", error)
-      }
-    }
-
-    fetchMangaList()
-  }, [])
 
   return (
     <div className = "main-page">
