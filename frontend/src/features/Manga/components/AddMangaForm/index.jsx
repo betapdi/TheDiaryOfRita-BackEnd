@@ -46,7 +46,7 @@ const AddMangaForm = (props) => {
 
   return (
     <div>
-      {CATEGORY_OPTIONS.length == 0 &&
+      {CATEGORY_OPTIONS.length > 0 &&
         <Formik 
           initialValues = {initialValues}
           validationSchema = {validationSchema}
@@ -56,7 +56,6 @@ const AddMangaForm = (props) => {
             //do something here...
 
             const  { values, errors, touched } = formikProps;
-            console.log(CATEGORY_OPTIONS)
             console.log(TESTING_OPTIONS)
             // console.log({ values, errors, touched })
 
