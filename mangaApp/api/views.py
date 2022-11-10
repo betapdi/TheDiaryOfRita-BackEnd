@@ -76,6 +76,10 @@ def getMangaDetails(request, pk):
 def addManga(request):
     data = request.data
     manga = Manga.objects.create(name = data['name'], description = data['description'])
+    for item in data['categories']:
+        category = Category.objects.get(name = item.label)
+        manga.category_set.add(category)
+    
     serializer = MangaSerializer(manga, many = False)
     return Response(serializer.data)
 

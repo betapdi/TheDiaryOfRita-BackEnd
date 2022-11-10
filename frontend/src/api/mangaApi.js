@@ -15,6 +15,11 @@ const mangaApi = {
     const url = '/mangaApp/categoryList/'
     return axiosClient.get(url)
   },
+
+  addManga: (formData) => {
+    const url = '/mangaApp/newManga/'
+    return axiosClient.post(url, formData)
+  }
 }
 
 export default mangaApi;
