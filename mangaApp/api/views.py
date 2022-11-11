@@ -76,7 +76,7 @@ def getMangaDetails(request, pk):
 def addManga(request):
     data = request.data
     manga = Manga.objects.create(name = data['mangaName'], description = data['description'], cover = data['cover_image'])
-    for item in data['categories']:
+    for item in data.getlist('categories'):
         category = Category.objects.get(id = item)
         manga.category_set.add(category)
     

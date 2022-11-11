@@ -16,9 +16,21 @@ const mangaApi = {
     return axiosClient.get(url)
   },
 
-  addManga: (formData) => {
+  addManga: (data) => {
+    const formData = new FormData()
+    formData.append('mangaName', data.mangaName)
+    formData.append('description', data.description)
+    data.categories.map(category => (
+      formData.append('categories', category)
+    ))
+    formData.append('cover_image', data.cover_image)
+
     const url = '/mangaApp/newManga/'
-    return axiosClient.post(url, formData)
+    return axiosClient.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
   }
 }
 
