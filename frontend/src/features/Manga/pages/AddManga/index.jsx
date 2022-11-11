@@ -13,7 +13,6 @@ const AddMangaPage = () => {
     console.log('Form submit: ', values)
 
     const action = addManga(values)
-    // console.log({action})
     dispatch(action)
     navigate('/')
   }

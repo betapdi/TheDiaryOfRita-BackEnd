@@ -75,9 +75,9 @@ def getMangaDetails(request, pk):
 @api_view(['POST'])
 def addManga(request):
     data = request.data
-    manga = Manga.objects.create(name = data['name'], description = data['description'])
+    manga = Manga.objects.create(name = data['mangaName'], description = data['description'], cover = data['cover_image'])
     for item in data['categories']:
-        category = Category.objects.get(name = item.label)
+        category = Category.objects.get(id = item)
         manga.category_set.add(category)
     
     serializer = MangaSerializer(manga, many = False)

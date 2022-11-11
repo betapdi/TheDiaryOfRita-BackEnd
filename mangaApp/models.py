@@ -9,7 +9,7 @@ class Manga(models.Model):
 	name = models.CharField(max_length = 50)
 	description = models.TextField(null = True, blank = True) #null = true for database, blank = true for saving
 	created = models.DateTimeField(auto_now_add = True) #auto_now: can change, auto_now_add: once
-	cover = models.ImageField(null = True)
+	cover = models.FileField(null = True)
 
 	def __str__(self):
 		return self.name
