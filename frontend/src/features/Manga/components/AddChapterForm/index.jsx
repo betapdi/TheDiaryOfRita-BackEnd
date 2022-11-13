@@ -3,94 +3,73 @@ import React from 'react';
 
 import { FastField, Form, Formik } from 'formik'; //Remember to use 'Form' of formik instead of reactstrap
 import { Button, FormGroup } from 'reactstrap';
-import { TESTING_OPTIONS } from '../../../../constances/dev-mode/options';
-import InputField from '../../../../custom-fields/InputField';
 import SelectField from '../../../../custom-fields/SelectField';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import FileChooser from '../../../../custom-fields/FileChooser';
-import { getCategoryList } from '../../slices/categorySlice';
+import InputField from '../../../../custom-fields/InputField';
+import { getManga } from '../../slices/mangaListSlice';
 
 const AddChapterForm = (props) => {
-  //fetch needded data
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchCategoryList = async () => {
-      dispatch(getCategoryList())
+    const fetchMangaList = async () => {
+      dispatch(getManga())
     }
 
-    fetchCategoryList()
+    fetchMangaList()
   }, [])
 
-  const CATEGORY_OPTIONS = useSelector(state => state.categoryList)  
-
+  const MANGA_OPTIONS = useSelector(state => state.mangaList);
+  
   const initialValues = {
-    mangaName: '', //for empty string
-    description: '',
-    categories: null, //for options, actions
-    cover_image: null,
+    manga_name: null,
+    chapter_id: "",
+    chapter_data: null,
   }
 
   const validationSchema = Yup.object().shape({
-      mangaName: Yup.string().required('This field is required.'),
+      manga_name: Yup.string().required('This field is required.'),
 
-      description: Yup.string().required('This field is required.'),
-
-      categories: Yup.array().min(1, 'This field need at least 1 item').required('This field is required.').nullable(),
+      chapter_id: Yup.string().required('This field is required.'),
   
-      cover_image: Yup.string().required("This field is required").nullable(),
+      chapter_data: Yup.string().required("This field is required").nullable(),
     })
 
   return (
     <div>
-      {CATEGORY_OPTIONS.length > 0 &&
+      {MANGA_OPTIONS.length > 0 &&
         <Formik 
           initialValues = {initialValues}
           validationSchema = {validationSchema}
           onSubmit = {props.onSubmit}
         >
           {formikProps => {
-            //do something here...
-
-            const  { values, errors, touched } = formikProps;
-            console.log(TESTING_OPTIONS)
-            // console.log({ values, errors, touched })
-
             return (
-              //Field will rerender when the other or itself was touched, FastField won't
-              //For details: Field will be dependent, FastField is independent
               <Form>
                 <FastField
-                  name = "mangaName"
-                  component = {InputField}
-
-                  label = "Manga Name"
-                  placeholder = "Eg: Han Deep Try..."
-                />
-
-                <FastField
-                  name = "description"
-                  component = {InputField}
-
-                  label = "Description"
-                  placeholder = "Eg: Han Deep Try..."
-                />
-
-                <FastField
-                  name = "categories"
+                  name = "manga_name"
                   component = {SelectField}
 
-                  label = "Categories"
-                  placeholder = "Choose your manga's categories"
-                  type = "multiple"
-                  options = {CATEGORY_OPTIONS}
+                  label = "Manga"
+                  placeholder = "Choose your manga"
+                  type = "single"
+                  options = {MANGA_OPTIONS}
+                />
+                
+                <FastField
+                  name = "chapter_id"
+                  component = {InputField}
+
+                  label = "Chapter ID"
+                  placeholder = "Eg: Oang Oang..."
                 />
 
                 <FastField
-                  name = "cover_image"
+                  name = "chapter_data"
                   type = "file"
                   component = {FileChooser}
 

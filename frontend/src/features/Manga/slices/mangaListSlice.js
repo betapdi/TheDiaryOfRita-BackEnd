@@ -1,10 +1,18 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import mangaApi from '../../../api/mangaApi'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import mangaApi from '../../../api/mangaApi';
 
 export const addChapter = createAsyncThunk(
   /*
    * TODO: write this silly function
   */
+)
+
+export const getManga = createAsyncThunk(
+  'mangaList/getAll',
+  async () => {
+    const response = await mangaApi.getAll();
+    return response
+  }
 )
 
 export const addManga = createAsyncThunk(
@@ -25,6 +33,14 @@ const mangaList = createSlice({
   extraReducers: {
     [addManga.fulfilled]: (state, action) => {
       state.push(action.payload)
+    },
+    
+    [getManga.fulfilled]: (state, action) => {
+      const data = action.payload.map((manga) => (
+        {value: manga.id, label: manga.name}
+      ))
+
+      return data
     }
   },
 })

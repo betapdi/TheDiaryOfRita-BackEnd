@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { FormFeedback, FormGroup, Label } from 'reactstrap'
-import Select from 'react-select'
 import { ErrorMessage } from 'formik'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Select from 'react-select'
+import { FormFeedback, FormGroup, Label } from 'reactstrap'
 
 const SelectField = (props) => {
   const { field, form, options, label, placeholder, disabled, type} = props
@@ -22,7 +22,7 @@ const SelectField = (props) => {
 
   const getValues = () => {
     const isMulti = (type === 'multiple')
-    if (!options || !field.value) return isMulti ? null : ''
+    if (!options || !field.value) return isMulti ? null : '';
 
     return isMulti 
       ? options.filter((option) => field.value.indexOf(option.value) >= 0)
