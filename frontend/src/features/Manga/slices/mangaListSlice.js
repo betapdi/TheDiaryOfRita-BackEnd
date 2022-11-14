@@ -7,7 +7,7 @@ export const addChapter = createAsyncThunk(
   */
 )
 
-export const getManga = createAsyncThunk(
+export const getAllManga = createAsyncThunk(
   'mangaList/getAll',
   async () => {
     const response = await mangaApi.getAll();
@@ -35,7 +35,7 @@ const mangaList = createSlice({
       state.push(action.payload)
     },
     
-    [getManga.fulfilled]: (state, action) => {
+    [getAllManga.fulfilled]: (state, action) => {
       const data = action.payload.map((manga) => (
         {value: manga.id, label: manga.name}
       ))

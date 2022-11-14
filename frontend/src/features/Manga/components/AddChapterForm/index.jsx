@@ -10,14 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import FileChooser from '../../../../custom-fields/FileChooser';
 import InputField from '../../../../custom-fields/InputField';
-import { getManga } from '../../slices/mangaListSlice';
+import { getAllManga } from '../../slices/mangaListSlice';
 
 const AddChapterForm = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchMangaList = async () => {
-      dispatch(getManga())
+      dispatch(getAllManga())
     }
 
     fetchMangaList()
@@ -27,20 +27,21 @@ const AddChapterForm = (props) => {
   
   const initialValues = {
     manga_name: null,
-    chapter_id: "",
+    chapter_id: 0,
     chapter_data: null,
   }
 
   const validationSchema = Yup.object().shape({
       manga_name: Yup.string().required('This field is required.'),
 
-      chapter_id: Yup.string().required('This field is required.'),
+      chapter_id: Yup.number().required('This field is required.'),
   
       chapter_data: Yup.string().required("This field is required").nullable(),
     })
 
   return (
     <div>
+      {console.log(MANGA_OPTIONS)}
       {MANGA_OPTIONS.length > 0 &&
         <Formik 
           initialValues = {initialValues}
@@ -63,7 +64,8 @@ const AddChapterForm = (props) => {
                 <FastField
                   name = "chapter_id"
                   component = {InputField}
-
+                  
+                  type = "number"
                   label = "Chapter ID"
                   placeholder = "Eg: Oang Oang..."
                 />
