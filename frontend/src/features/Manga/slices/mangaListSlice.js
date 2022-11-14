@@ -31,7 +31,7 @@ const mangaList = createSlice({
     
     [getAllManga.fulfilled]: (state, action) => {
       const data = action.payload.map((manga) => (
-        {value: manga.id, label: manga.name}
+        {value: manga.id, label: manga.name, cover: manga.cover}
       ))
 
       return data

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import mangaApi from '../../../../api/mangaApi'
-import { getCategoryList } from '../../slices/categorySlice'
+import { getAllManga } from '../../slices/mangaListSlice'
 
 const MainPage = () => {
   const dispatch = useDispatch()
@@ -11,6 +11,7 @@ const MainPage = () => {
     const fetchMangaList = async () => {
       try {
         const response = await mangaApi.getAll()
+        dispatch(getAllManga());
         console.log(response)
       } catch (error) {
         console.log("Failed to fetch manga list: ", error)
@@ -22,33 +23,17 @@ const MainPage = () => {
 
   const mangas = useSelector(state => state.mangaList)
   console.log('List of mangas: ', mangas)
-
-  useEffect(() =>  {
-    const viewImage = (file, index) => {
-      let reader = new FileReader();
-      let image = document.getElementById("manga_cover_" + index); 
-      reader.onload = (e) => {
-        image.src = e.target.result;
-      }
-      reader.readAsDataURL(file);
-    }
-
-    const previewAllImage = () => {
-      mangas.map((manga, index) => {
-        viewImage(manga.cover_image, index);
-      })
-    } 
-
-    previewAllImage();
-  }, [mangas])
+  console.log(process.env.REACT_APP_SERVER_URL)
 
   return (
     <div className = "main-page">
       {mangas.map((manga, index) => (
         <div key={index}>
-          {manga.mangaName}
-          {manga.description}
-          <img id={"manga_cover_" + index} width={"500px"} height={"500px"}/>
+          {manga.label}
+          {manga.index}
+          <img id={"manga_cover_" + index} width={"500px"} height={"500px"} 
+            src={process.env.REACT_APP_SERVER_URL + manga.cover}
+          />
         </div>
       ))}
     </div>
