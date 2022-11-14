@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import AddChapterForm from '../../components/AddChapterForm'
-import { addManga } from '../../slices/mangaListSlice'
+import { addChapter } from '../../slices/chapterSlice'
 
 const AddChapterPage = () => {
   const dispatch = useDispatch()
@@ -12,7 +12,7 @@ const AddChapterPage = () => {
   const handleSubmit = (values) => {
     console.log('Form submit: ', values)
 
-    const action = addManga(values)
+    const action = addChapter(values)
     dispatch(action)
     navigate('/')
   }

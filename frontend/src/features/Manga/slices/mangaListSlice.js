@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import mangaApi from '../../../api/mangaApi';
 
-export const addChapter = createAsyncThunk(
-  /*
-   * TODO: write this silly function
-  */
-)
-
 export const getAllManga = createAsyncThunk(
   'mangaList/getAll',
   async () => {
