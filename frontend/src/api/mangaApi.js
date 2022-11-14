@@ -36,15 +36,16 @@ const mangaApi = {
 
   addChapter: (data) => {
     const formData = new FormData()
+    console.log(data)
     formData.append('chapterId', data.chapter_id)
     formData.append('chapterData', data.chapter_data)
 
     const url = `/mangaApp/${data.manga_name}/upload/`
-    return axiosClient.post(url, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      }
-    })
+    // return axiosClient.post(url, formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data',
+    //   }
+    // })
   }
 
   //To Do: Check authorization when upload data

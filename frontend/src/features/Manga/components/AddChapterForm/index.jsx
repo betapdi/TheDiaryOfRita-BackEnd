@@ -75,11 +75,11 @@ const AddChapterForm = (props) => {
                   component = {FileChooser}
 
                   accept = ".zip"
-                  label = "FileChooser"
+                  label = "Chapter Zip Data"
                 />
 
                 <FormGroup>
-                  <Button type = "submit" color = "primary">Add new Manga</Button>
+                  <Button type = "submit" color = "primary">Add Chapter</Button>
                 </FormGroup>
               </Form>
             )
