@@ -27,7 +27,7 @@ const mangaList = createSlice({
   name: 'mangaList',
   initialState: [],
   reducers: {
-
+    
   },
 
   extraReducers: {

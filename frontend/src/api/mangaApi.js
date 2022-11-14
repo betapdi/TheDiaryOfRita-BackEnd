@@ -1,3 +1,4 @@
+import { Form } from "formik"
 import axiosClient from "./axiosClient"
 
 const mangaApi = {
@@ -31,7 +32,22 @@ const mangaApi = {
         'Content-Type': 'multipart/form-data',
       }
     })
+  },
+
+  addChapter: (data) => {
+    const formData = new FormData()
+    formData.append('chapterId', data.chapter_id)
+    formData.append('chapterData', data.chapter_data)
+
+    const url = `/mangaApp/${data.manga_name}/upload/`
+    return axiosClient.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
   }
+
+  //To Do: Check authorization when upload data
 }
 
 export default mangaApi;

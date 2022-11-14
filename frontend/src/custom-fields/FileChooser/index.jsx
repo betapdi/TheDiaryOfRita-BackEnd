@@ -4,7 +4,7 @@ import React from 'react'
 import { FormFeedback, FormGroup, Input, Label } from 'reactstrap'
 
 const FileChooser = (props) => {
-  const { field, form, label, type} = props
+  const { field, form, label, type, accept} = props
   const { name, onChange, onBlur } = field
 
   const {errors, touched} = form
@@ -20,7 +20,7 @@ const FileChooser = (props) => {
         type = {type}
         onChange = {(e) => form.setFieldValue(field.name, e.target.files[0])}
 
-        accept = "image/*"
+        accept = {accept}
         className = {showError ? 'is-invalid' : ''}
       />
 
@@ -32,6 +32,12 @@ const FileChooser = (props) => {
 FileChooser.propTypes = {
   field: PropTypes.object.isRequired,
   form: PropTypes.object.isRequired,
+
+  accept: PropTypes.string,
+}
+
+FileChooser.defaultProps = {
+  accept: "*"
 }
 
 export default FileChooser

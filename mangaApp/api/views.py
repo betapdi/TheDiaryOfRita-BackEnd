@@ -109,7 +109,7 @@ def getImages(request, pk, index):
 @api_view(['POST'])
 def addChapter(request, pk):
     manga = Manga.objects.get(id = pk)
-    chapter = Chapter.objects.create(mangaName = manga, chapterZipData = request.data['chapterZipData'], index = request.data['index'])
+    chapter = Chapter.objects.create(mangaName = manga, chapterZipData = request.data['chapterData'], index = request.data['chapterId'])
     handleUploadedChapter(chapter.chapterZipData, chapter)
     serializer = ChapterSerializer(chapter, many = False)
     return Response(serializer.data)

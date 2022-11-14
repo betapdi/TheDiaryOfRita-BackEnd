@@ -41,7 +41,6 @@ const AddChapterForm = (props) => {
 
   return (
     <div>
-      {console.log(MANGA_OPTIONS)}
       {MANGA_OPTIONS.length > 0 &&
         <Formik 
           initialValues = {initialValues}
@@ -75,6 +74,7 @@ const AddChapterForm = (props) => {
                   type = "file"
                   component = {FileChooser}
 
+                  accept = ".zip"
                   label = "FileChooser"
                 />
 
