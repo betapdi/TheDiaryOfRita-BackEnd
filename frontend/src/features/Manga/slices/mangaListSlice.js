@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import mangaApi from '../../../api/mangaApi';
 
+//To Do: Change all createAsyncThunk to try catch function to catch error 
+
 export const getAllManga = createAsyncThunk(
   'mangaList/getAll',
   async () => {

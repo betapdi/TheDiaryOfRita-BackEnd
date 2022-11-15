@@ -44,6 +44,7 @@ const user = createSlice({
 
     [updateToken.fulfilled]: (state, action) => {
       ((action.payload.status !== 200) && logoutUser())
+      console.log(action.payload.status)
 
       console.log('Update Token success')
       localStorage.setItem('authTokens', JSON.stringify(action.payload))
