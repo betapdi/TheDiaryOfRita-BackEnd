@@ -25,7 +25,6 @@ axiosPrivate.interceptors.response.use((response) => {
 
   return response;
 }, (error) => {
-  console.log(error)
   throw error;
 });
 

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import userApi from '../../api/userApi'
 import jwt_decode from "jwt-decode"
 
@@ -10,16 +10,24 @@ const initialState = {
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (formData) => {
-    const response = await userApi.login(formData)
-    return response
+    try {
+      const response = await userApi.login(formData)
+      return response
+    } catch (error) {
+      return error      
+    }
   }
 )
 
 export const updateToken = createAsyncThunk(
   'user/updateToken',
   async (currentRefreshToken) => {
-    const response = await userApi.updateToken(currentRefreshToken)
-    return response
+    try {
+      const response = await userApi.updateToken(currentRefreshToken)
+      return response
+    } catch (error) {
+      return error      
+    }
   }
 )
 
@@ -37,20 +45,33 @@ const user = createSlice({
 
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
-      localStorage.setItem('authTokens', JSON.stringify(action.payload))
-      state.authTokens = action.payload;
-      state.user = jwt_decode(action.payload.access)
+      if (action.payload.access == null) {
+        console.log('Wrong username or password')
+      }
+
+      else {
+        localStorage.setItem('authTokens', JSON.stringify(action.payload))
+        state.authTokens = action.payload;
+        state.user = jwt_decode(action.payload.access)
+      }
     },
 
     [updateToken.fulfilled]: (state, action) => {
-      ((action.payload.status !== 200) && logoutUser())
-      console.log(action.payload.status)
+      if (action.payload.access == null) {
+        console.log('You are not logged in')
 
-      console.log('Update Token success')
-      localStorage.setItem('authTokens', JSON.stringify(action.payload))
+        localStorage.removeItem('authTokens')
+        state.authTokens = null
+        state.user = null
+      }
       
-      state.authTokens = action.payload;
-      state.user = jwt_decode(action.payload.access)
+      else {
+        console.log('Update Token success')
+        localStorage.setItem('authTokens', JSON.stringify(action.payload))
+        
+        state.authTokens = action.payload;
+        state.user = jwt_decode(action.payload.access)
+      }
     },
   }
 })
