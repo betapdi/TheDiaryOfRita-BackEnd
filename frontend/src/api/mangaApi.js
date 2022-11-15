@@ -7,7 +7,7 @@ const mangaApi = {
     return axiosClient.get(url, { params })
   },
 
-  get: (id) => {
+  getMangaData: (id) => {
     const url = `/mangaApp/${id}/`
     return axiosClient.get(url)
   },
