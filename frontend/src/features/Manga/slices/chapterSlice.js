@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import mangaApi from '../../../api/mangaApi'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const addChapter = createAsyncThunk(
   'chapterList/addChapter',
@@ -9,6 +8,10 @@ export const addChapter = createAsyncThunk(
     const response = await mangaApi.addChapter(data)
     return response
   }
+)
+
+export const addMultipleChapter = createAsyncThunk(
+  // TODO: Waiting 4 backend to write this func 
 )
 
 const chapterList = createSlice({

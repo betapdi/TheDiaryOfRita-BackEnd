@@ -4,14 +4,14 @@ import React from 'react';
 import { FastField, Form, Formik } from 'formik'; //Remember to use 'Form' of formik instead of reactstrap
 import { Button, FormGroup } from 'reactstrap';
 import { TESTING_OPTIONS } from '../../../../constances/dev-mode/options';
-import SelectField from '../../../../custom-fields/SelectField';
 import InputField from '../../../../custom-fields/InputField';
+import SelectField from '../../../../custom-fields/SelectField';
 
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import FileChooser from '../../../../custom-fields/FileChooser';
-import { useEffect } from 'react';
 import { getCategoryList } from '../../slices/categorySlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const AddMangaForm = (props) => {
   //fetch needded data
