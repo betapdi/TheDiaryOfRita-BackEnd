@@ -59,15 +59,6 @@ const AddMultipleChapterForm = (props) => {
                   type = "single"
                   options = {MANGA_OPTIONS}
                 />
-                
-                <FastField
-                  name = "chapter_id"
-                  component = {MultipDataInputField}
-                  
-                  regex = " "
-                  label = "Chapters ID"
-                  placeholder = "Eg: Oang Oang..."
-                />
 
                 <FastField
                   name = "chapter_data"
