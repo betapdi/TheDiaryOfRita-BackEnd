@@ -10,7 +10,7 @@ const MultipDataInputField = (props) => {
     field, form, //props of fastfield
     type, label, placeholder, regex //our props
   } = props
-
+  
   const {name, value, onChange, onBlur} = field //defaults
 
   const {errors, touched} = form

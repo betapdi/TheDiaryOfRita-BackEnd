@@ -12,11 +12,17 @@ const MangaPage = (props) => {
   }, [])
 
   const manga = useSelector(state => state.manga)
+  console.log(manga);
 
   return (
     <div className = "manga-page">
       {manga != null ? 
-        <h1>HEHE</h1>
+        <>
+          {manga.name}
+          {manga.description}
+          <img width={"500px"} height={"500px"} src={process.env.REACT_APP_SERVER_URL + manga.cover}
+          />
+        </>
         : <h1>NONE</h1>
       }
     </div>
