@@ -2,12 +2,12 @@ import axiosPrivate from "./axiosPrivate"
 
 const userApi = {
   login: (data) => {
-    const url = '/token/'
+    const url = '/auth/token/'
     return axiosPrivate.post(url, data)
   },
   
   updateToken: (token) => {
-    const url = '/token/refresh/'
+    const url = '/auth/token/refresh/'
     return axiosPrivate.post(url, token)
   },
 }

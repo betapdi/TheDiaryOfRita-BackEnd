@@ -11,26 +11,6 @@ from django.core.files import File as DjangoFile
 #safe = False mean can use data by any languages like queryset of python to json data
 
 
-####### Customized Token Information #######
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom claims
-        token['username'] = user.username
-        token['isSuperuser'] = user.is_superuser
-        # ...
-
-        return token
-
-class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
-
-
 
 ####### Get Routes Of API #######
 @api_view(['GET'])
