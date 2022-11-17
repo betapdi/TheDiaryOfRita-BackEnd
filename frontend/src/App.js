@@ -1,14 +1,12 @@
-import React, { Suspense } from 'react'
+import React, { Suspense } from 'react';
+import {
+  BrowserRouter, Navigate, Route, Routes
+} from "react-router-dom";
 import './App.css';
 import Header from './components/Header';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
 
-import Authentication from './features/Authentication'
+import Banner from './components/Banner';
+import Authentication from './features/Authentication';
 const Manga = React.lazy(() => import('./features/Manga'));
 
 function App() {
@@ -17,6 +15,7 @@ function App() {
       <Suspense fallback = {<div>Loading...</div>}>
         <BrowserRouter>
           <Header />
+          <Banner/>
           <Routes>
             <Route path = "/" element = {<Navigate to = "/manga" replace />} />
             <Route path = "manga/*" element = {<Manga />} />

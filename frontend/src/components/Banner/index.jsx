@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './Banner.scss';
+import defaultBanner from '../../assets/banner/test.png'
 import PropTypes from 'prop-types'
-import './Banner.scss'
-import defaultBanner from '../../assets/images/test.png'
 
 const Banner = (props) => {
   const { backgroundUrl } = props;
   
+
   const bannerUrl = backgroundUrl ?  `${backgroundUrl}` : defaultBanner
   
   return (
@@ -20,5 +21,6 @@ Banner.propTypes = {
 Banner.defaultProps = {
   backgroundUrl: '',
 }
+
 
 export default Banner
