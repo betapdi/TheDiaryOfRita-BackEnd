@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import AddMultipleChapterForm from '../../components/AddMultipleChapterForm copy'
+import AddMultipleChapterForm from '../../components/AddMultipleChapterForm'
 
 
 const AddMultipleChapterPage = () => {

@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import FileChooser from '../../../../custom-fields/FileChooser';
-import MultipDataInputField from '../../../../custom-fields/MultipDataInputField';
 import { getAllManga } from '../../slices/mangaListSlice';
 
 const AddMultipleChapterForm = (props) => {
