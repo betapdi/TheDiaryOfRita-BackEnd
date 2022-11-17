@@ -52,4 +52,10 @@ class Category(models.Model):
 class FavouriteManga(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'favourMangas')
 	mangas = models.ManyToManyField(Manga, blank = True)
+ 
+class Banner(models.Model):
+	image = models.FileField(null = True)
+ 
+	def __str__(self):
+		return self.image.name
     

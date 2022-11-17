@@ -28,4 +28,7 @@ urlpatterns = [
     
     ### Category url ###
     path('categoryList/', views.getCategoryList),
+    
+    ### Banner url ###
+    path('bannerList/', views.getBannerList),
 ]

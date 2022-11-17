@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner
 from .serializers import ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer
 from django.core.files.images import ImageFile
 from django.core.files import File as DjangoFile
@@ -31,6 +31,8 @@ def getRoutes(request):
         'DELETE /api/mangaApp/favourites/remove/',
         '',
         'GET /api/mangaApp/categoryList/',
+        '',
+        'Get /api/mangaApp/bannerList/',
     ]
     
     return Response(routes)
@@ -133,8 +135,18 @@ def getCategoryList(request):
     serializer = CategorySerializer(categories, many = True)
     return Response(serializer.data)
     
-            
-            
+    
+    
+    
+####### Banner Handling #######       
+@api_view(['GET'])
+def getBannerList(request):
+    bannerList = Banner.objects.all()
+    serializer = CategorySerializer(bannerList, many = True)
+    return Response(serializer.data)
+       
+       
+       
             
 ####### Favourite Manga Handling #######
 @api_view(['GET'])
