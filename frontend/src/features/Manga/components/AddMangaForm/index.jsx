@@ -3,7 +3,6 @@ import React from 'react';
 
 import { FastField, Form, Formik } from 'formik'; //Remember to use 'Form' of formik instead of reactstrap
 import { Button, FormGroup } from 'reactstrap';
-import { TESTING_OPTIONS } from '../../../../constances/dev-mode/options';
 import InputField from '../../../../custom-fields/InputField';
 import SelectField from '../../../../custom-fields/SelectField';
 
@@ -54,9 +53,6 @@ const AddMangaForm = (props) => {
         >
           {formikProps => {
             //do something here...
-
-            const  { values, errors, touched } = formikProps;
-            console.log(TESTING_OPTIONS)
             // console.log({ values, errors, touched })
 
             return (
@@ -87,7 +83,7 @@ const AddMangaForm = (props) => {
                   placeholder = "Choose your manga's categories"
                   type = "multiple"
                   options = {CATEGORY_OPTIONS}
-                />
+                  />
 
                 <FastField
                   name = "cover_image"
