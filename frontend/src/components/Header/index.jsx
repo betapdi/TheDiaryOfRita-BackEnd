@@ -27,7 +27,10 @@ const Header = () => {
 
           <Col xs = "auto">
             {userState.user == null 
-              ? <Link to = '/auth'>Login</Link> 
+              ? <span>
+                <Link to = '/auth'>Login</Link> |
+                <Link to = '/auth/register'>Register</Link> 
+              </span>
               : <p onClick = {handleLogout}>Logout</p>
             }
           </Col>
