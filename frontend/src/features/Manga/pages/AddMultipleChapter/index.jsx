@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import AddMultipleChapterForm from '../../components/AddMultipleChapterForm'
+import { addMultipleChapters } from '../../slices/chapterSlice'
 
 
 const AddMultipleChapterPage = () => {
@@ -11,10 +12,7 @@ const AddMultipleChapterPage = () => {
   const handleSubmit = (values) => {
     console.log('Form submit: ', values)
 
-    // const action = addChapter(values)
-    // dispatch(action)
-    // TODO: write addmultiplechapter action and replace old action 
-
+    dispatch(addMultipleChapters(values))
     navigate('/')
   }
 

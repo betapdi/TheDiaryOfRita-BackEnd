@@ -96,7 +96,7 @@ def addChapter(request, pk):
 @api_view(['POST'])
 def addMultiChapters(request, pk):
     manga = Manga.objects.get(id = pk)
-    handleUploadedMangaPackage(request.data['chapterZipData'], manga)
+    handleUploadedMangaPackage(request.data['chapterData'], manga)
     chapters = Chapter.objects.filter(mangaName__id = pk)
     serializer = ChapterSerializer(chapters, many = True)
     return Response(serializer.data)

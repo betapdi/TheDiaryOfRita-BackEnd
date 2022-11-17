@@ -1,3 +1,4 @@
+import axios from "axios"
 import { Form } from "formik"
 import axiosClient from "./axiosClient"
 
@@ -40,6 +41,18 @@ const mangaApi = {
     formData.append('chapterData', data.chapter_data)
 
     const url = `/mangaApp/${data.manga_name}/chapter/upload/`
+    return axiosClient.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
+  },
+
+  addMultipleChapters: (data) => {
+    const formData = new FormData()
+    formData.append('chapterData', data.chapter_data)
+
+    const url = `/mangaApp/${data.manga_name}/chapter/uploadMulti/`
     return axiosClient.post(url, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

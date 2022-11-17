@@ -10,8 +10,13 @@ export const addChapter = createAsyncThunk(
   }
 )
 
-export const addMultipleChapter = createAsyncThunk(
-  // TODO: Waiting 4 backend to write this func 
+export const addMultipleChapters = createAsyncThunk(
+ 'chapterList/addMultipleChapters',
+ 
+ async (data) => {
+  const response = await mangaApi.addMultipleChapters(data)
+  return response
+ }
 )
 
 const chapterList = createSlice({
