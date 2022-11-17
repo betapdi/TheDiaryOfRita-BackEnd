@@ -6,6 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 
+from mangaApp.models import FavouriteManga
+
 ####### Customized Token Information #######
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -36,4 +38,6 @@ def registerUser(request):
 
     user = User.objects.create_user(username, email, password)
     user.save()
+
+    FavouriteManga.objects.create(user = user)
     return Response(status = status.HTTP_201_CREATED)
