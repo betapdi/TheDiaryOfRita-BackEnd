@@ -6,11 +6,11 @@ import mangaReducer from "../features/Manga/slices/mangaSlice"
 import bannerReducer from "../slices/bannerSlice"
 
 const rootReducer = {
-  mangaList: mangaListReducer,
   userData: userReducer,
+  mangaList: mangaListReducer,
   categoryList: categoryReducer,
-  manga: mangaReducer,
   bannerList: bannerReducer,
+  manga: mangaReducer,
 }
 
 const store = configureStore({

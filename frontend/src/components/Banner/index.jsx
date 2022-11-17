@@ -6,7 +6,7 @@ import './Banner.scss';
 
 const Banner = (props) => {
   const dispatch = useDispatch()
-  const banners = useSelector((state) => state);
+  const banners = useSelector((state) => state.bannerList);
 
   useEffect(() => {
     const fetchBanner = async () => {

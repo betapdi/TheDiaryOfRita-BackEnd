@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import bannerApi from '../api/bannerApi';
 
 export const getBannerList = createAsyncThunk(
-  'banner/getAllBanners',
+  'bannerList/getAllBanners',
   async () => {
     const response = await bannerApi.getAllBanners();
     return response
@@ -19,7 +19,7 @@ const bannerList = createSlice({
   extraReducers: {
     [getBannerList.fulfilled]: (state, action) => {
       const data = action.payload.map((banner) => (
-        {value: banner.id, label: banner.name}
+        {value: banner.id}
       ))
 
       return data
@@ -28,5 +28,5 @@ const bannerList = createSlice({
 })
 
 const { reducer, actions } = bannerList
-export const { getAll } = actions
+export const { } = actions
 export default reducer
