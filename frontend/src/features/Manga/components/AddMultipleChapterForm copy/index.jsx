@@ -70,7 +70,7 @@ const AddMultipleChapterForm = (props) => {
                 />
 
                 <FormGroup>
-                  <Button type = "submit" color = "primary">Add Chapter</Button>
+                  <Button type = "submit" color = "primary">Add Chapters</Button>
                 </FormGroup>
               </Form>
             )
