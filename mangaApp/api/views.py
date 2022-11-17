@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner
-from .serializers import ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer
+from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer
 from django.core.files.images import ImageFile
 from django.core.files import File as DjangoFile
 #safe = False mean can use data by any languages like queryset of python to json data
@@ -142,7 +142,7 @@ def getCategoryList(request):
 @api_view(['GET'])
 def getBannerList(request):
     bannerList = Banner.objects.all()
-    serializer = CategorySerializer(bannerList, many = True)
+    serializer = BannerSerializer(bannerList, many = True)
     return Response(serializer.data)
        
        
