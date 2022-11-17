@@ -50,7 +50,7 @@ const RegisterForm = (props) => {
             />
 
             <FormGroup>
-              <Button type = "submit" color = "primary">Login</Button>
+              <Button type = "submit" color = "primary">Register</Button>
             </FormGroup>
           </Form>
         )

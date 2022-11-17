@@ -5,6 +5,11 @@ const userApi = {
     const url = '/auth/token/'
     return axiosPrivate.post(url, data)
   },
+
+  register: (data) => {
+    const url = '/auth/register/'
+    return axiosPrivate.post(url, data) 
+  },
   
   updateToken: (token) => {
     const url = '/auth/token/refresh/'

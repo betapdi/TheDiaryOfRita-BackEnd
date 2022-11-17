@@ -1,16 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { } from '../../userSlice'
 import { useNavigate } from 'react-router-dom'
 import RegisterForm from '../../components/RegisterForm'
+import userApi from '../../../../api/userApi'
 
 const RegisterPage = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log('Form submit: ', values)
 
+    const response = await userApi.register(values)
+    console.log(response)
   }
 
   return (
