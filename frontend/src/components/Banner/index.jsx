@@ -1,16 +1,25 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getBannerList } from "../../slices/bannerSlice";
 import './Banner.scss';
-import defaultBanner from '../../assets/banner/test.png'
-import PropTypes from 'prop-types'
 
 const Banner = (props) => {
-  const { backgroundUrl } = props;
-  
+  const dispatch = useDispatch()
+  const banners = useSelector((state) => state);
 
-  const bannerUrl = backgroundUrl ?  `${backgroundUrl}` : defaultBanner
-  
+  useEffect(() => {
+    const fetchBanner = async () => {
+      dispatch(getBannerList());
+
+      console.log("BANNER", banners);
+    }
+
+    // fetchBanner();
+  }, []);
+
   return (
-    <img src = {bannerUrl} className = "banner" alt = "banner"/>
+    <img src = {""} className = "banner" alt = "banner"/>
   )
 }
 

@@ -1,5 +1,3 @@
-import axios from "axios"
-import { Form } from "formik"
 import axiosClient from "./axiosClient"
 
 const mangaApi = {

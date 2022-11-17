@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import mangaApi from '../../../api/mangaApi'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const getCategoryList = createAsyncThunk(
   'categoryList/getAll',

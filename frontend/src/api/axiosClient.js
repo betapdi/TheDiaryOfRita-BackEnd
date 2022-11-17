@@ -1,8 +1,8 @@
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 import queryString from 'query-string';
+import store from '../app/store';
 import { updateToken } from '../features/Authentication/userSlice';
-import store from '../app/store'
-import jwt_decode from "jwt-decode"
 
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
