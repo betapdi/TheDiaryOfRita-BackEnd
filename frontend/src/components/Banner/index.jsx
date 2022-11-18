@@ -35,7 +35,6 @@ const Banner = (props) => {
             date={Date.now() + BANNER_SHOW_TIME}
             key = {bannerid}
             onComplete = {() => {
-                console.log("aaa");
                 setBannerId((bannerid + 1) % banners.length);
             }}
         ></Countdown>
