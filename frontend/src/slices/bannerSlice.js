@@ -18,10 +18,7 @@ const bannerList = createSlice({
 
   extraReducers: {
     [getBannerList.fulfilled]: (state, action) => {
-      const data = action.payload.map((banner) => (
-        {value: banner.id}
-      ))
-
+      const data = action.payload
       return data
     }
   }

@@ -7,19 +7,21 @@ import './Banner.scss';
 const Banner = (props) => {
   const dispatch = useDispatch()
   const banners = useSelector((state) => state.bannerList);
-
+  
   useEffect(() => {
     const fetchBanner = async () => {
       dispatch(getBannerList());
-
-      console.log("BANNER", banners);
     }
-
-    // fetchBanner();
+    
+    fetchBanner();
   }, []);
-
+  
   return (
-    <img src = {""} className = "banner" alt = "banner"/>
+    <div>
+      {banners.map((banner) => (
+        <img src = {`${process.env.REACT_APP_SERVER_URL}` + banner.image} className = "banner" alt = "banner"/>
+      ))}
+    </div>
   )
 }
 
