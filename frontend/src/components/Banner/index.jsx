@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getBannerList } from "../../slices/bannerSlice";
 import './Banner.scss';
+import Countdown from 'react-countdown';
 
 const Banner = (props) => {
   const dispatch = useDispatch()
@@ -14,10 +15,13 @@ const Banner = (props) => {
     }
     
     fetchBanner();
+    console.log(banners);
   }, []);
   
   return (
     <div>
+        <Countdown date={Date.now() + 5000}><div>aaa</div></Countdown>
+
       {banners.map((banner) => (
         <img src = {`${process.env.REACT_APP_SERVER_URL}` + banner.image} className = "banner" alt = "banner"/>
       ))}
