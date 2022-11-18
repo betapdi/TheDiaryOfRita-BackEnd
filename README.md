@@ -32,6 +32,7 @@ React modules:\
     - npm install sass\
     - npm install yup\
     - npm install react-select\
+    - npm install react-countdown\
     - npm install bootstrap (remember add bootstrap css file when using reactstrap) (import 'bootstrap/dist/css/bootstrap.css')
 
 
