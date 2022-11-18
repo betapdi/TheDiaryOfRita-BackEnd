@@ -12,7 +12,7 @@ const MainPage = () => {
       try {
         const response = await mangaApi.getAll()
         dispatch(getAllManga());
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.log("Failed to fetch manga list: ", error)
       }
@@ -22,8 +22,8 @@ const MainPage = () => {
   }, [])
 
   const mangas = useSelector(state => state.mangaList)
-  console.log('List of mangas: ', mangas)
-  console.log(process.env.REACT_APP_SERVER_URL)
+  // console.log('List of mangas: ', mangas)
+  // console.log(process.env.REACT_APP_SERVER_URL)
 
   return (
     <div className = "main-page">

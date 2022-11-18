@@ -12,7 +12,7 @@ const MangaPage = (props) => {
   }, [])
 
   const manga = useSelector(state => state.manga)
-  console.log(manga);
+  // console.log(manga);
 
   return (
     <div className = "manga-page">
