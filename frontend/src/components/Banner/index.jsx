@@ -33,7 +33,6 @@ const Banner = (props) => {
 
   useEffect(() => {
     if (banners.length == 0) return;
-    console.log("banners", banners);
 
     setBanner((
       <img className="banner" src = {`${process.env.REACT_APP_SERVER_URL}` + banners[bannerid].image} alt = "banner"/>
@@ -56,8 +55,15 @@ const Banner = (props) => {
       <div className='countDownClock'>{countdownClock}</div>
       <div className='bannerContainer'>
         {banner}
-        <button className='transitionBannerButton previousBannerButton' onClick={() => {setBannerId(getPreviousBannerIndex())}}/>
-        <button className='transitionBannerButton nextBannerButton'  onClick={() => {setBannerId(getNextBannerIndex())}}/>
+        <button className='transitionBannerButton directToConsecutiveBannerButton previousBannerButton' onClick={() => {setBannerId(getPreviousBannerIndex())}}/>
+        <button className='transitionBannerButton directToConsecutiveBannerButton nextBannerButton'  onClick={() => {setBannerId(getNextBannerIndex())}}/>
+        
+        <div className='specificBannerIdTransitionContainer'>
+          {banners.map((banner, index) => (
+            <button className='specificBannerIdTransitionButton' onClick={()=>{setBannerId(index)}}>
+            </button>
+          ))}
+        </div>
       </div>
     </>
   )

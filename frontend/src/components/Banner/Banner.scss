@@ -15,21 +15,40 @@
   .transitionBannerButton {
     position: absolute;
     background-color: #000;
-    color: white;
-    width: 30px;
-    height: 30px;
     border: none;
     cursor: pointer;
     border-radius: 12px;
   }
 
-  .previousBannerButton {
+  .directToConsecutiveBannerButton {
     top: 50%;
+    width: 30px;
+    height: 30px;
+  }
+
+  .previousBannerButton {
     left: 2%;
   }
 
   .nextBannerButton {
-    top: 50%;
     right: 2%;
   }
+
+  .specificBannerIdTransitionContainer {
+    position: absolute;
+    display: flex;
+    bottom: 5%;
+    left: 50%;
+    border: none;
+    cursor: pointer;
+    transform: translateX(-50%);
+
+    .specificBannerIdTransitionButton{
+      width: 20px;
+      height: 20px;
+      margin: 0 2px;
+      border-radius: 100%;
+    }
+  }
 }
+
