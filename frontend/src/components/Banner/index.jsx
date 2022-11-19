@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
@@ -7,7 +8,8 @@ import './Banner.scss';
 
 const Banner = (props) => {
   const BANNER_SHOW_TIME = 5000;
-
+  const BANNER_STARTING_FADE_TIME = 1;
+  
   const [banner, setBanner] = useState((<></>));
   const [bannerid, setBannerId] = useState(0);
   const dispatch = useDispatch()
@@ -33,21 +35,36 @@ const Banner = (props) => {
 
   useEffect(() => {
     if (banners.length == 0) return;
-
-    setBanner((
+    
+    setBanner(
       <img className="banner" src = {`${process.env.REACT_APP_SERVER_URL}` + banners[bannerid].image} alt = "banner"/>
-    ));
-
-    setCountdownClock(
-        <Countdown
-            date={Date.now() + BANNER_SHOW_TIME}
-            key = {bannerid}
-            onComplete = {() => {
-                setBannerId(getNextBannerIndex());
-            }}
-        ></Countdown>
     );
 
+    const setupNewBanner = async () => {
+      setCountdownClock(
+          <Countdown
+              date={Date.now() + BANNER_SHOW_TIME}
+              key = {bannerid}
+              precision={3}
+
+              onStart = {() => {
+                $(".banner").css("animation", "fadein 1s ease");
+              }}
+              
+              onTick = {({seconds, milliseconds}) => {
+                let remain_time = seconds * 1000 + milliseconds;
+                console.log(remain_time / 1000);
+              }}
+              
+              onComplete = {() => {
+                $(".banner").css("animation", "none");
+                setBannerId(getNextBannerIndex());
+              }}
+          ></Countdown>
+      );
+    }
+
+    setupNewBanner()
   }, [bannerid, banners])
 
   return (
@@ -60,7 +77,7 @@ const Banner = (props) => {
         
         <div className='specificBannerIdTransitionContainer'>
           {banners.map((banner, index) => (
-            <button className='specificBannerIdTransitionButton' onClick={()=>{setBannerId(index)}}>
+            <button key={index} className='specificBannerIdTransitionButton' onClick={()=>{setBannerId(index)}}>
             </button>
           ))}
         </div>
