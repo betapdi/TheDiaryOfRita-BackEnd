@@ -14,6 +14,15 @@ const Banner = (props) => {
   const banners = useSelector((state) => state.bannerList);
   const [countdownClock, setCountdownClock] = useState();
 
+  const getNextBannerIndex = () => {
+    return (bannerid + 1) % banners.length;
+  } 
+
+  const getPreviousBannerIndex = () => {
+    if (bannerid == 0) return banners.length - 1;
+    return (bannerid - 1) % banners.length;
+  } 
+
   useEffect(() => {
     const fetchBanner = async () => {
       dispatch(getBannerList());
@@ -35,7 +44,7 @@ const Banner = (props) => {
             date={Date.now() + BANNER_SHOW_TIME}
             key = {bannerid}
             onComplete = {() => {
-                setBannerId((bannerid + 1) % banners.length);
+                setBannerId(getNextBannerIndex());
             }}
         ></Countdown>
     );
@@ -45,7 +54,11 @@ const Banner = (props) => {
   return (
     <>
       <div className='countDownClock'>{countdownClock}</div>
-      {banner}
+      <div className='bannerContainer'>
+        {banner}
+        <button className='transitionBannerButton previousBannerButton' onClick={() => {setBannerId(getPreviousBannerIndex())}}/>
+        <button className='transitionBannerButton nextBannerButton'  onClick={() => {setBannerId(getNextBannerIndex())}}/>
+      </div>
     </>
   )
 }
