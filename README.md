@@ -23,6 +23,7 @@ Django request types:\
 React modules:\
     - npm install jwt-decode\
     - npm install axios\
+    - npm install jquery\
     - npm install query-string\
     - npm install react-redux\
     - npm install @reduxjs/toolkit\
