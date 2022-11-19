@@ -8,10 +8,10 @@ import './Banner.scss';
 
 const Banner = (props) => {
   const BANNER_SHOW_TIME = 5000;
-  const BANNER_STARTING_FADE_TIME = 1;
   
-  const [banner, setBanner] = useState((<></>));
-  const [bannerid, setBannerId] = useState(0);
+  const [bannerElement, setBannerElement] = useState((<></>));
+  const [bannerid, setBannerId] = useState(-1);
+  const [previousBannerId, setPreviousBannerId] = useState(0);
   const dispatch = useDispatch()
   const banners = useSelector((state) => state.bannerList);
   const [countdownClock, setCountdownClock] = useState();
@@ -35,12 +35,21 @@ const Banner = (props) => {
 
   useEffect(() => {
     if (banners.length == 0) return;
-    
-    setBanner(
-      <img className="banner" src = {`${process.env.REACT_APP_SERVER_URL}` + banners[bannerid].image} alt = "banner"/>
+
+    let tmpElement = (
+      <div className='banner'>
+        {
+          banners.map((banner, index) => <img key={index} className={"img banner"+index} src={`${process.env.REACT_APP_SERVER_URL}` + banner.image} alt="banner"/>)
+        }
+      </div>
     );
 
-    const setupNewBanner = async () => {
+    setBannerId(0);
+    setBannerElement(tmpElement);
+  }, [banners])
+
+  useEffect(() => {
+    const setupNewBanner = () => {
       setCountdownClock(
           <Countdown
               date={Date.now() + BANNER_SHOW_TIME}
@@ -48,37 +57,47 @@ const Banner = (props) => {
               precision={3}
 
               onStart = {() => {
-                $(".banner").css("animation", "fadein 1s ease");
-              }}
-              
-              onTick = {({seconds, milliseconds}) => {
-                let remain_time = seconds * 1000 + milliseconds;
-                console.log(remain_time / 1000);
+                $(".banner"+previousBannerId).css("opacity", "0", "important");
+                $(".banner"+bannerid).css("opacity", "1", "important");
               }}
               
               onComplete = {() => {
-                $(".banner").css("animation", "none");
+                $(".banner"+bannerid).css("opacity", "0", "important");
                 setBannerId(getNextBannerIndex());
               }}
           ></Countdown>
       );
     }
 
-    setupNewBanner()
-  }, [bannerid, banners])
+    setupNewBanner();
+  }, [bannerid])
 
   return (
     <>
       <div className='countDownClock'>{countdownClock}</div>
       <div className='bannerContainer'>
-        {banner}
-        <button className='transitionBannerButton directToConsecutiveBannerButton previousBannerButton' onClick={() => {setBannerId(getPreviousBannerIndex())}}/>
-        <button className='transitionBannerButton directToConsecutiveBannerButton nextBannerButton'  onClick={() => {setBannerId(getNextBannerIndex())}}/>
+        {bannerElement}
+        <button className='transitionBannerButton directToConsecutiveBannerButton previousBannerButton' 
+          onClick={() => {
+            setPreviousBannerId(bannerid);
+            setBannerId(getPreviousBannerIndex())
+          }}
+        />
+        <button className='transitionBannerButton directToConsecutiveBannerButton nextBannerButton'  
+          onClick={() => {
+            setPreviousBannerId(bannerid);
+            setBannerId(getNextBannerIndex())
+          }}
+        />
         
         <div className='specificBannerIdTransitionContainer'>
           {banners.map((banner, index) => (
-            <button key={index} className='specificBannerIdTransitionButton' onClick={()=>{setBannerId(index)}}>
-            </button>
+            <button key={index} className='specificBannerIdTransitionButton' onClick={
+              ()=>{
+                setPreviousBannerId(bannerid);
+                setBannerId(index);
+              }}
+            />
           ))}
         </div>
       </div>
