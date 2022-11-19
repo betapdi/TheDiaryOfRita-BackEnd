@@ -62,7 +62,7 @@ const Banner = (props) => {
               }}
               
               onComplete = {() => {
-                $(".banner"+bannerid).css("opacity", "0", "important");
+                setPreviousBannerId(bannerid);
                 setBannerId(getNextBannerIndex());
               }}
           ></Countdown>
