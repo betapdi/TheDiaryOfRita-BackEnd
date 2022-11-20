@@ -7,7 +7,7 @@ import { getBannerList } from "../../slices/bannerSlice";
 import './Banner.scss';
 
 const Banner = (props) => {
-  const BANNER_SHOW_TIME = 5000;
+  const BANNER_SHOW_TIME = 7000;
   
   const [bannerElement, setBannerElement] = useState((<></>));
   const [bannerid, setBannerId] = useState(-1);
