@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import {
   BrowserRouter, Navigate, Route, Routes
 } from "react-router-dom";
@@ -7,21 +7,38 @@ import Header from './components/Header';
 
 import Banner from './components/Banner';
 import Authentication from './features/Authentication';
+import { updateToken } from './features/Authentication/userSlice';
+import { useDispatch } from 'react-redux';
 const Manga = React.lazy(() => import('./features/Manga'));
 
 function App() {
+  const dispatch = useDispatch()
+  const [hasToken, setHasToken] = useState(false)
+
+  useEffect(() => {
+    const getToken = async () => {
+      const token = (localStorage.getItem('authTokens') ? (JSON.parse(localStorage.getItem('authTokens'))).refresh : null)
+      if (token != null) dispatch(updateToken({refresh: token}))
+      setHasToken(true)
+    }
+
+    getToken()
+  }, [])
+  
   return (
     <div className= "manga-app">
       <Suspense fallback = {<div>Loading...</div>}>
-        <BrowserRouter>
-          <Header />
-          <Banner/>
-          <Routes>
-            <Route path = "/" element = {<Navigate to = "/manga" replace />} />
-            <Route path = "manga/*" element = {<Manga />} />
-            <Route path = "auth/*" element = {<Authentication />} />
-          </Routes>
-        </BrowserRouter>
+        {hasToken &&
+          <BrowserRouter>
+            <Header />
+            <Banner/>
+            <Routes>
+              <Route path = "/" element = {<Navigate to = "/manga" replace />} />
+              <Route path = "manga/*" element = {<Manga />} />
+              <Route path = "auth/*" element = {<Authentication />} />
+            </Routes>
+          </BrowserRouter>
+        }
       </Suspense>
     </div>
   );

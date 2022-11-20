@@ -59,6 +59,7 @@ const user = createSlice({
     [updateToken.fulfilled]: (state, action) => {
       if (action.payload.access == null) {
         console.log('You are not logged in')
+        console.log(action.payload)
 
         localStorage.removeItem('authTokens')
         state.authTokens = null
@@ -67,6 +68,7 @@ const user = createSlice({
       
       else {
         console.log('Update Token success')
+        console.log(action.payload)
         localStorage.setItem('authTokens', JSON.stringify(action.payload))
         
         state.authTokens = action.payload;
