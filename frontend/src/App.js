@@ -47,6 +47,7 @@ function App() {
 export default App;
 
 // List of installed modules in this app:
+// npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 // npm install jwt-decode
 // npm install axios
 // npm install query-string

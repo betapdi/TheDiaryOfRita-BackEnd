@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import './Header.scss'
 import 'bootstrap/dist/css/bootstrap.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,7 +32,11 @@ const Header = () => {
                 <Link to = '/auth'>Login</Link> |
                 <Link to = '/auth/register'>Register</Link> 
               </span>
-              : <p onClick = {handleLogout}>Logout</p>
+              
+              : <span>
+                  <Link to = '/manga/favourites'><FavoriteIcon/></Link> |
+                  <span onClick = {handleLogout}>Logout</span>
+                </span>
             }
           </Col>
         </Row>
