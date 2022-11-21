@@ -19,7 +19,6 @@ const mangaApi = {
 
   getAllFavourites: () => {
     const url = '/mangaApp/favourites/'
-    console.log(url)
     return axiosClient.get(url)
   },
 
