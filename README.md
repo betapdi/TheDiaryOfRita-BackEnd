@@ -23,7 +23,7 @@ Django request types:\
     - Check models in mangaApp/models.py
 
 React modules:\
-    - npm install @mui/material\
+    - npm install @mui/icons-material @mui/material @emotion/styled @emotion/react\
     - npm install jwt-decode\
     - npm install axios\
     - npm install jquery\
