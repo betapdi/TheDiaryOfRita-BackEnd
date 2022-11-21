@@ -13,7 +13,9 @@ Django modules:\
 
 Django server initialization:\
     - python manage.py runserver\
-    - Create superuser: python manage.py createsuperuser
+    - Create superuser: python manage.py createsuperuser\
+    - Make migrations when change in models: python manage.py makemigrations\
+    - Migrate data after make migrations or not migrate before: python manage.py migrate\
     - **Remember to run server in django project**
 
 Django request types:\
