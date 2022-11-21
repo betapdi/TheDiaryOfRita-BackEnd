@@ -34,7 +34,7 @@ const Header = () => {
               </span>
               
               : <span>
-                  <Link to = '/manga/favourites'><FavoriteIcon/></Link> |
+                  <Link to = '/manga/favourites'><FavoriteIcon style={{color: "black"}}/></Link> |
                   <span onClick = {handleLogout}>Logout</span>
                 </span>
             }
