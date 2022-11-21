@@ -1,3 +1,16 @@
+@keyframes changeBackgroundOfDirectButton {
+  0% {
+      background-color: #ffffff;
+      color: #000;
+      border: 1px solid #e1e1e1;
+  }
+  100% {
+      background-color: #ed1c24;
+      color: #ffffff;
+      border: 1px solid #ed1c24;
+  }
+}
+
 .banner {
   position: static;
   height: 34.9vw;
@@ -29,21 +42,40 @@
     background-color: #000;
     border: none;
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 13px;
   }
 
   .directToConsecutiveBannerButton {
     top: 50%;
     width: 30px;
     height: 30px;
+    font-family: "Quicksand", sans-serif;
+    border: 1px solid #e1e1e1;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    
+    animation-duration: 0.3s; 
+    animation-timing-function: linear; 
+    animation-delay: 0ms; 
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal; 
+    animation-play-state: running; 
+
+    &:hover {
+      animation-name: changeBackgroundOfDirectButton;
+    }
   }
 
   .previousBannerButton {
     left: 2%;
+    transform: scale(0);
   }
-
+  
   .nextBannerButton {
     right: 2%;
+    transform: scale(0);
   }
 
   .specificBannerIdTransitionContainer {

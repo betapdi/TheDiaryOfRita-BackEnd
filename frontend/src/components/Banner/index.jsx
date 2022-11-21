@@ -44,6 +44,23 @@ const Banner = (props) => {
       </div>
     );
 
+    $(document).on({
+      mouseenter: () => {
+        $(".previousBannerButton").css("background-color", "#ffffff");
+        $(".previousBannerButton").css("transform", "scale(1)");
+        $(".previousBannerButton").css("transition", "transform 0.3s ease");
+        $(".nextBannerButton").css("background-color", "#ffffff");
+        $(".nextBannerButton").css("transform", "scale(1)");
+        $(".nextBannerButton").css("transition", "transform 0.3s ease");
+      },
+      mouseleave: () => {
+        $(".nextBannerButton").css("transform", "scale(0)");
+        $(".nextBannerButton").css("transition", "transform 0.3s ease");
+        $(".previousBannerButton").css("transform", "scale(0)");
+        $(".previousBannerButton").css("transition", "transform 0.3s ease");
+      }
+    }, ".bannerContainer");
+
     setBannerId(0);
     setBannerElement(tmpElement);
   }, [banners])
@@ -82,13 +99,13 @@ const Banner = (props) => {
             setPreviousBannerId(bannerid);
             setBannerId(getPreviousBannerIndex())
           }}
-        />
+        >&lt;</button>
         <button className='transitionBannerButton directToConsecutiveBannerButton nextBannerButton'  
           onClick={() => {
             setPreviousBannerId(bannerid);
             setBannerId(getNextBannerIndex())
           }}
-        />
+        >&gt;</button>
         
         <div className='specificBannerIdTransitionContainer'>
           {banners.map((banner, index) => (
