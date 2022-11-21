@@ -1,3 +1,4 @@
+import axios from "axios"
 import axiosClient from "./axiosClient"
 
 const mangaApi = {
@@ -13,6 +14,12 @@ const mangaApi = {
 
   getAllCategories: () => {
     const url = '/mangaApp/categoryList/'
+    return axiosClient.get(url)
+  },
+
+  getAllFavourites: () => {
+    const url = '/mangaApp/favourites/'
+    console.log(url)
     return axiosClient.get(url)
   },
 
