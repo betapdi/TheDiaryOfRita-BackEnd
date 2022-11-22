@@ -25,6 +25,14 @@ const Banner = (props) => {
     return (bannerid - 1) % banners.length;
   } 
 
+  const updateSpecificBannerIdTrasitionButton = (oldBannerId, newBannerId) => {
+    console.log("update", oldBannerId, newBannerId);
+    $(".buttonTransition"+oldBannerId).css("background-color", "white");
+    $(".buttonTransition"+oldBannerId).css("border-color", "#e1e1e1");
+    $(".buttonTransition"+newBannerId).css("background-color", "#ed1c24");
+    $(".buttonTransition"+newBannerId).css("border-color", "#ed1c24");
+  }
+
   useEffect(() => {
     const fetchBanner = async () => {
       dispatch(getBannerList());
@@ -60,9 +68,10 @@ const Banner = (props) => {
         $(".previousBannerButton").css("transition", "transform 0.3s ease");
       }
     }, ".bannerContainer");
-
+    
     setBannerId(0);
     setBannerElement(tmpElement);
+    updateSpecificBannerIdTrasitionButton(0, 0);
   }, [banners])
 
   useEffect(() => {
@@ -79,6 +88,7 @@ const Banner = (props) => {
               }}
               
               onComplete = {() => {
+                updateSpecificBannerIdTrasitionButton(bannerid, getNextBannerIndex());
                 setPreviousBannerId(bannerid);
                 setBannerId(getNextBannerIndex());
               }}
@@ -96,12 +106,14 @@ const Banner = (props) => {
         {bannerElement}
         <button className='transitionBannerButton directToConsecutiveBannerButton previousBannerButton' 
           onClick={() => {
+            updateSpecificBannerIdTrasitionButton(bannerid, getPreviousBannerIndex());
             setPreviousBannerId(bannerid);
             setBannerId(getPreviousBannerIndex())
           }}
         >&lt;</button>
         <button className='transitionBannerButton directToConsecutiveBannerButton nextBannerButton'  
           onClick={() => {
+            updateSpecificBannerIdTrasitionButton(bannerid, getNextBannerIndex( ));
             setPreviousBannerId(bannerid);
             setBannerId(getNextBannerIndex())
           }}
@@ -109,8 +121,9 @@ const Banner = (props) => {
         
         <div className='specificBannerIdTransitionContainer'>
           {banners.map((banner, index) => (
-            <button key={index} className='specificBannerIdTransitionButton' onClick={
-              ()=>{
+            <button key={index} className={'specificBannerIdTransitionButton ' + 'buttonTransition' + index} onClick={
+              () => {
+                updateSpecificBannerIdTrasitionButton(bannerid, index);
                 setPreviousBannerId(bannerid);
                 setBannerId(index);
               }}
