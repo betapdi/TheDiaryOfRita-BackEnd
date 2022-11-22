@@ -4,8 +4,14 @@ import mangaApi from '../../../api/mangaApi'
 export const getFavouriteList = createAsyncThunk(
   'favouriteList/getAll',
   async () => {
-    const response = await mangaApi.getAllFavourites()
-    return response
+    try {
+      const response = await mangaApi.getAllFavourites()
+      return response
+    }
+
+    catch(error) {
+      console.log(error)
+    }
   }
 )
 

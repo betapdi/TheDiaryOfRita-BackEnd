@@ -51,7 +51,7 @@ class Category(models.Model):
 #Manga optional models
 class FavouriteManga(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'favourMangas')
-	mangas = models.ManyToManyField(Manga, blank = True)
+	mangas = models.ManyToManyField(Manga, blank = True, related_name = 'favourMangas')
  
 class Banner(models.Model):
 	image = models.FileField(null = True)

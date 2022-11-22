@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner
 
 #Manga needed serializer
@@ -29,6 +29,11 @@ class BannerSerializer(ModelSerializer):
 
 #Manga optional serializer
 class FavouriteMangaSerializer(ModelSerializer):
+    mangaList = SerializerMethodField()
+
+    def get_mangaList(self, obj):
+        return MangaSerializer(Manga.objects.filter(favourMangas = obj), many = True).data
+
     class Meta:
         model = FavouriteManga
-        fields = '__all__'
+        fields = ['id', 'user', 'mangaList']

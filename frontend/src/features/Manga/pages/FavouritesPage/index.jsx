@@ -10,7 +10,7 @@ const FavouritesPage = (props) => {
   }, [])
 
   const favouriteList = useSelector(state => state.favouriteList)
-  // console.log(favouriteList);
+  console.log(favouriteList);
 
   return (
     <div className = "manga-page">
