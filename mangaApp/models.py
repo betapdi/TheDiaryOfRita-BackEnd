@@ -65,4 +65,13 @@ class Banner(models.Model):
  
 	def __str__(self):
 		return self.image.name
+
+class ReadingStatus(models.Model):
+  user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'readingHistory')
+  mangas = models.ManyToManyField(Manga, through = 'MangaReadingHistory')
+  
+class MangaReadingHistory(models.Model):
+	readingHistory = models.ForeignKey(ReadingStatus, on_delete = models.CASCADE)
+	manga = models.ForeignKey(Manga, on_delete = models.CASCADE)
+	lastRead = models.DateTimeField(auto_now = True)
     
