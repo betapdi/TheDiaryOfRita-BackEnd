@@ -8,8 +8,15 @@ class Manga(models.Model):
 	#topic
 	name = models.CharField(max_length = 50)
 	description = models.TextField(null = True, blank = True) #null = true for database, blank = true for saving
-	created = models.DateTimeField(auto_now_add = True) #auto_now: can change, auto_now_add: once
 	cover = models.FileField(null = True)
+ 
+	views = models.IntegerField(default = 0)
+	likes = models.IntegerField(default = 0)
+	totalStars = models.IntegerField(default = 0)
+	totalVotes = models.IntegerField(default = 0)
+ 
+	created = models.DateTimeField(auto_now_add = True) #auto_now: can change, auto_now_add: once
+	updated = models.DateTimeField(auto_now = True)
 
 	def __str__(self):
 		return self.name
