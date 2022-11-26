@@ -16,6 +16,10 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
 
 .topMangaComponentContainer {
   margin-top: 5vw;
+  border: 5px solid red;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  background-color: limegreen;
 
   .extraComponentInTopManga {
     .topMangaLabel {

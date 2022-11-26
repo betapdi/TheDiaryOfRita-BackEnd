@@ -30,7 +30,9 @@ const TopManga = () => {
     useEffect(() => {
       setTopManga(mangas.slice(0, 7));
       const Xpos_topMangaElement = window.scrollX + document.querySelector('.topMangaContainer').getBoundingClientRect().left;
-      $(".extraComponentInTopManga").css("margin-left", Xpos_topMangaElement + "px");
+      const Xpos_topMangaComponentElement = window.scrollX + document.querySelector('.topMangaComponentContainer').getBoundingClientRect().left;
+      const Xpos = Xpos_topMangaComponentElement - Xpos_topMangaElement;
+      $(".extraComponentInTopManga").css("margin-left", Xpos - + "px");
       $(".extraComponentInTopManga").css("transform", "translateX(1.5vw)");
     }, [mangas]);
 
