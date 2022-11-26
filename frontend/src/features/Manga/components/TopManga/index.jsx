@@ -39,6 +39,7 @@ const TopManga = () => {
       $(".mostViewOption"+previousMostViewOption).css("border-radius", "0rem");
       $(".mostViewOption"+mostViewOption).css("background-color", "#ffdee7");
       $(".mostViewOption"+mostViewOption).css("border-radius", "3rem");
+
     }, [mostViewOption]);
 
     const changeMostViewOption = (topManga, newViewOption) => {

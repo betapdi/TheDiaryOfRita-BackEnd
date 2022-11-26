@@ -28,9 +28,15 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
       font-size: 1.2rem;
       width: 10rem;
       height: 3rem;
+      margin-right: 0.5vw;
       border-bottom: 0.2vw solid #ffdee7;
       border-radius: 0rem;
       margin-bottom: 1vw;
+
+      -webkit-transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
+      -moz-transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
+      -o-transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
+      transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
     }
   }
 
