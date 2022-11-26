@@ -24,10 +24,13 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
       font-size: 2rem;
     }
     .btn {
-      width: 5rem;
-      height: 5rem;
-      border: 0.5vw solid blue;
-      border-bottom: 0;
+      font-family: "Quicksand", sans-serif;
+      font-size: 1.2rem;
+      width: 10rem;
+      height: 3rem;
+      border-bottom: 0.5vw solid #ffdee7;
+      border-radius: 0rem;
+      margin-bottom: 1vw;
     }
   }
 
@@ -48,18 +51,20 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
     width: $topmangas_width;
     height: $topmangas_height;
     padding: $topmangas_padding;
-    border: $topmangas_border solid red;
-    border-radius: 1%;
+    border: $topmangas_border solid none;
+    border-radius: 3rem;
+    // background-color: #bfe9ff;
 
     .top1Manga {
       max-width: $top1manga_width;
       max-height: $top1manga_height;
-      border: $top1Manga_border solid cyan;
+      border: $top1Manga_border solid #ffdee7;
+      border-radius: 3rem;
     }
 
     .otherTopManga {
       padding: 0vw !important;
-      border: $othertopmanga_border solid cyan;
+      border: $othertopmanga_border solid none;
       max-width: $othertopmanga_maxwidth;
       max-height: $othertopmanga_maxheight;
     }
@@ -67,18 +72,20 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
     .imgcoverTopManga {
       max-width: $imgcovertopmanga_maxwidth;
       max-height: $imgcovertopmanga_maxheight;
+      border: 0.5vw solid #bfe9ff;
+      border-radius: 1rem;
     }
 
     .belowTopMangaContainer {
       width: $othertopmangaContainer_width;
       height: $othertopmangaContainer_height;
-      border: $othertopmangaContainer_border solid green;
+      border: $othertopmangaContainer_border solid none;
     }
     
     .underTopMangaContainer {
       width: $othertopmangaContainer_width;
       height: $othertopmangaContainer_height;
-      border: $othertopmangaContainer_border solid green;
+      border: $othertopmangaContainer_border solid none;
     }
   }
 }

@@ -38,9 +38,9 @@ const TopManga = () => {
       <div className="topMangaComponentContainer">
         <div className="extraComponentInTopManga">
           <p className="topMangaLabel">Top Manga</p>
-          <button className="mostDayViewBtn btn" onClick={() => {setTopManga(mangas.slice(0, 7))}}/>
-          <button className="mostWeekViewBtn btn" onClick={() => {setTopManga(mangas.slice(1, 8))}}/>
-          <button className="mostMonthViewBtn btn" onClick={() => {setTopManga(mangas.slice(2, 9))}}/>
+          <button className="mostDayViewBtn btn" onClick={() => {setTopManga(mangas.slice(0, 7))}}>View ngày</button>
+          <button className="mostWeekViewBtn btn" onClick={() => {setTopManga(mangas.slice(1, 8))}}>View tuần</button>
+          <button className="mostMonthViewBtn btn" onClick={() => {setTopManga(mangas.slice(2, 9))}}>View tháng</button>
         </div>
         <MDBRow className="topMangaContainer">
             {topManga.length > 0 && (
@@ -79,6 +79,12 @@ const TopManga = () => {
                 </>
             )}
         </MDBRow>
+        ,
+        ,
+        ,
+        ,,,
+        ,
+
       </div>
     );
 };
