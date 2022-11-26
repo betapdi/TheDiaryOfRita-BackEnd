@@ -14,6 +14,11 @@ $othertopmanga_maxheight: ($othertopmangaContainer_height - 2 * $othertopmangaCo
 $imgcovertopmanga_maxwidth: $othertopmanga_maxwidth - 2 * $othertopmanga_border; 
 $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_border;
 
+.topMangaComponentContainer {
+  margin-top: 5vw;
+  text-align: left;
+}
+
 .col-md-5 {
   padding: 0vw !important;
   text-align: left;
@@ -27,11 +32,12 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
 }
 
 .topMangaContainer {
+  margin: 5% auto !important;
   width: $topmangas_width;
   height: $topmangas_height;
   padding: $topmangas_padding;
-  margin: 5% auto;
   border: $topmangas_border solid red;
+  border-radius: 1%;
 
   .top1Manga {
     max-width: $top1manga_width;

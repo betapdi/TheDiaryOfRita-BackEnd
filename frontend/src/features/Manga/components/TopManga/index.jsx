@@ -22,10 +22,15 @@ const TopManga = () => {
     }, []);
 
     const mangas = useSelector((state) => state.mangaList);
-    const topManga = mangas.slice(0, 7);
+    const topManga = mangas.slice(1, 8);
     console.log(topManga[0]);
 
     return (
+      <div className="topMangaComponentContainer">
+        Top Manga
+        <button/>
+        <button/>
+        <button/>
         <MDBRow className="topMangaContainer">
             {topManga.length > 0 && (
                 <>
@@ -63,6 +68,7 @@ const TopManga = () => {
                 </>
             )}
         </MDBRow>
+      </div>
     );
 };
 
