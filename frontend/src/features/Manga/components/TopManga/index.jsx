@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import mangaApi from '../../../../api/mangaApi';
 import { getAllManga } from '../../slices/mangaListSlice';
 import "./TopManga.scss";
+import {useNavigate} from 'react-router-dom';
 
 const TopManga = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const [topManga, setTopManga] = useState([]);
     const [mostViewOption, setMostViewOption] = useState(0);
@@ -62,7 +64,7 @@ const TopManga = () => {
             {topManga.length > 0 && (
                 <>
                     <MDBCol md="5">
-                        <img className="top1Manga" src={process.env.REACT_APP_SERVER_URL + topManga[0].cover}/>
+                        <img className="top1Manga" src={process.env.REACT_APP_SERVER_URL + topManga[0].cover} onClick={() => navigate("" + topManga[0].value)}/>
                     </MDBCol>
                     <MDBCol md="7" className="otherTopMangaContainer">
                         <MDBRow className="belowTopMangaContainer">
@@ -73,6 +75,7 @@ const TopManga = () => {
                                         <img 
                                           className="imgcoverTopManga"
                                           src={process.env.REACT_APP_SERVER_URL + topManga[index].cover}
+                                          onClick={() => navigate("" + manga.value)}
                                         />
                                     </MDBCol>
                                 );
@@ -86,6 +89,7 @@ const TopManga = () => {
                                         <img
                                           className="imgcoverTopManga"
                                           src={process.env.REACT_APP_SERVER_URL + topManga[index].cover}
+                                          onClick={() => navigate("" + manga.value)}
                                         />
                                     </MDBCol>
                                 );

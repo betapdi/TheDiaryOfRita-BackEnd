@@ -38,10 +38,10 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
       margin-bottom: 1vw;
       background-color: white;
 
-      -webkit-transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
-      -moz-transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
-      -o-transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
-      transition: background-color 0.3s ease-in, border-radius 0.5s ease-in;
+      -webkit-transition: background-color 0.3s ease, border-radius 0.5s ease-in;
+      -moz-transition: background-color 0.3s ease, border-radius 0.5s ease-in;
+      -o-transition: background-color 0.3s ease, border-radius 0.5s ease-in;
+      transition: background-color 0.3s ease, border-radius 0.5s ease-in;
     }
   }
 
