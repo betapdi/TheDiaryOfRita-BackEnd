@@ -16,10 +16,14 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
 
 .topMangaComponentContainer {
   margin-top: 5vw;
-  border: 5px solid #E97777;
+  border-left: 0.5rem solid #ffdee7;
+  border-top: 0.5rem solid #ffdee7;
+  border-radius: 3rem;
   margin-left: 15vw;
   margin-right: 15vw;
-  background-color: #FFFAD7;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  // background-color: #fec4c0;
 
   .extraComponentInTopManga {
     .topMangaLabel {
@@ -33,9 +37,9 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
       width: 10rem;
       height: 3rem;
       margin-right: 0.5vw;
-      border-bottom: 0.2vw solid #ffdee7;
+      border-bottom: 0.2vw solid none;
       border-radius: 0rem;
-      margin-bottom: 1vw;
+      margin-bottom: 0.2vw;
       background-color: white;
 
       -webkit-transition: background-color 0.3s ease, border-radius 0.5s ease-in;
@@ -69,8 +73,8 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
     .top1Manga {
       max-width: $top1manga_width;
       max-height: $top1manga_height;
-      border: $top1Manga_border solid #7FE9DE;
-      border-radius: 3rem;
+      border: $top1Manga_border solid none;
+      border-radius: 1rem;
     }
 
     .otherTopManga {
@@ -81,9 +85,9 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
     }
     
     .imgcoverTopManga {
-      max-width: $imgcovertopmanga_maxwidth;
-      max-height: $imgcovertopmanga_maxheight;
-      border: 0.1vw solid #FF9F9F;
+      width: $imgcovertopmanga_maxwidth;
+      height: $imgcovertopmanga_maxheight;
+      border: 0.5vw solid #ffdee7;
       border-radius: 1rem;
     }
 
