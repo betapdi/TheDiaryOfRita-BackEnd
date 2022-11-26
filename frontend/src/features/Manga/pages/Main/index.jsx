@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import mangaApi from '../../../../api/mangaApi'
+import TopManga from '../../components/TopManga'
 import { getAllManga } from '../../slices/mangaListSlice'
 
 const MainPage = () => {
@@ -22,20 +23,12 @@ const MainPage = () => {
   }, [])
 
   const mangas = useSelector(state => state.mangaList)
-  // console.log('List of mangas: ', mangas)
+  console.log('List of mangas: ', mangas)
   // console.log(process.env.REACT_APP_SERVER_URL)
 
   return (
     <div className = "main-page">
-      {mangas.map((manga, index) => (
-        <div key={index}>
-          {manga.label}
-          {manga.index}
-          <img id={"manga_cover_" + index} width={"500px"} height={"500px"} 
-            src={process.env.REACT_APP_SERVER_URL + manga.cover}
-          />
-        </div>
-      ))}
+      <TopManga/>
     </div>
   )
 }

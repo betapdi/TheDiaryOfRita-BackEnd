@@ -16,6 +16,7 @@
     "formik": "^2.2.9",
     "jquery": "^3.6.1",
     "jwt-decode": "^3.1.2",
+    "mdb-react-ui-kit": "^5.0.0",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-countdown": "^2.3.4",

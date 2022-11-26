@@ -26,7 +26,6 @@ const Banner = (props) => {
   } 
 
   const updateSpecificBannerIdTrasitionButton = (oldBannerId, newBannerId) => {
-    console.log("update", oldBannerId, newBannerId);
     $(".buttonTransition"+oldBannerId).css("background-color", "white");
     $(".buttonTransition"+oldBannerId).css("border", "1px solid #e1e1e1");
     $(".buttonTransition"+newBannerId).css("background-color", "#F75146");
@@ -113,7 +112,7 @@ const Banner = (props) => {
         >&lt;</button>
         <button className='transitionBannerButton directToConsecutiveBannerButton nextBannerButton'  
           onClick={() => {
-            updateSpecificBannerIdTrasitionButton(bannerid, getNextBannerIndex( ));
+            updateSpecificBannerIdTrasitionButton(bannerid, getNextBannerIndex());
             setPreviousBannerId(bannerid);
             setBannerId(getNextBannerIndex())
           }}
