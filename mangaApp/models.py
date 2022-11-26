@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 
@@ -66,6 +67,11 @@ class Banner(models.Model):
 	def __str__(self):
 		return self.image.name
 
+class DayViews(models.Model):
+  manga = models.ForeignKey(Manga, on_delete = models.CASCADE, null = True, related_name = 'dayViews')
+  day = models.DateField(auto_now_add = True)
+  views = models.IntegerField(default = 0)
+  
 class ReadingStatus(models.Model):
   user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'readingHistory')
   mangas = models.ManyToManyField(Manga, through = 'MangaReadingHistory')
