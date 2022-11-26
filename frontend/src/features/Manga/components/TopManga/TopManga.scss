@@ -1,5 +1,36 @@
 .topMangaContainer {
-  width: 75vw;
+  width: 70vw;
   height: 40vw;
   margin: 5% auto;
+  border: 5px solid red;
+}
+
+.top1Manga {
+  justify-content: center;
+  border: 5px solid cyan;
+  bottom: 0px;
+  max-width: 30vw;
+  max-height: 40vw;
+}
+
+.otherTopManga {
+  border: 5px solid cyan;
+  width: 12vw;
+  padding: 10px;
+}
+
+.underTopManga {
+  float: bottom;
+}
+
+.belowTopMangaContainer {
+  width: 40vw;
+  height: 20vw;
+  border: 5px solid green;
+}
+
+.underTopMangaContainer {
+  width: 40vw;
+  height: 20vw;
+  border: 5px solid green;
 }
