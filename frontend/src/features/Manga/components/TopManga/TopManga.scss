@@ -1,36 +1,65 @@
+$topmangas_width: 70vw;
+$topmangas_height: 40vw;
+$topmangas_padding: 1vw;
+$topmangas_border: 0.5vw;
+$top1Manga_border: 0.5vw;
+$top1manga_width: ($topmangas_width - $topmangas_padding * 2 - $topmangas_border * 2) / 12 * 5;
+$top1manga_height: ($topmangas_height - $topmangas_padding * 2  - $topmangas_border * 2);
+$othertopmangaContainer_border: 0.5vw;
+$othertopmangaContainer_width: $topmangas_width - $top1manga_width - 2 * $topmangas_padding - 2 * $topmangas_border;
+$othertopmangaContainer_height: ($topmangas_height - 2 * $topmangas_padding - 2 * $othertopmangaContainer_border) / 2;
+$othertopmanga_border: 0.5vw;
+$othertopmanga_maxwidth: ($othertopmangaContainer_width - 2 * $othertopmangaContainer_border) / 3;
+$othertopmanga_maxheight: ($othertopmangaContainer_height - 2 * $othertopmangaContainer_border);
+$imgcovertopmanga_maxwidth: $othertopmanga_maxwidth - 2 * $othertopmanga_border; 
+$imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_border;
+
+.col-md-5 {
+  padding: 0vw !important;
+  text-align: left;
+  margin: auto 0 !important;
+}
+
+.col-md-4 {
+  padding: 0vw !important;
+  margin: auto 0 !important;
+  text-align: center;
+}
+
 .topMangaContainer {
-  width: 70vw;
-  height: 40vw;
+  width: $topmangas_width;
+  height: $topmangas_height;
+  padding: $topmangas_padding;
   margin: 5% auto;
-  border: 5px solid red;
-}
+  border: $topmangas_border solid red;
 
-.top1Manga {
-  justify-content: center;
-  border: 5px solid cyan;
-  bottom: 0px;
-  max-width: 30vw;
-  max-height: 40vw;
-}
+  .top1Manga {
+    max-width: $top1manga_width;
+    max-height: $top1manga_height;
+    border: $top1Manga_border solid cyan;
+  }
 
-.otherTopManga {
-  border: 5px solid cyan;
-  width: 12vw;
-  padding: 10px;
-}
+  .otherTopManga {
+    padding: 0vw !important;
+    border: $othertopmanga_border solid cyan;
+    max-width: $othertopmanga_maxwidth;
+    max-height: $othertopmanga_maxheight;
+  }
+  
+  .imgcoverTopManga {
+    max-width: $imgcovertopmanga_maxwidth;
+    max-height: $imgcovertopmanga_maxheight;
+  }
 
-.underTopManga {
-  float: bottom;
-}
-
-.belowTopMangaContainer {
-  width: 40vw;
-  height: 20vw;
-  border: 5px solid green;
-}
-
-.underTopMangaContainer {
-  width: 40vw;
-  height: 20vw;
-  border: 5px solid green;
+  .belowTopMangaContainer {
+    width: $othertopmangaContainer_width;
+    height: $othertopmangaContainer_height;
+    border: $othertopmangaContainer_border solid green;
+  }
+  
+  .underTopMangaContainer {
+    width: $othertopmangaContainer_width;
+    height: $othertopmangaContainer_height;
+    border: $othertopmangaContainer_border solid green;
+  }
 }

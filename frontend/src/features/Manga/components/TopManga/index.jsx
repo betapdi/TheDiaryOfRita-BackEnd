@@ -22,7 +22,7 @@ const TopManga = () => {
     }, []);
 
     const mangas = useSelector((state) => state.mangaList);
-    const topManga = mangas.slice(1, 8);
+    const topManga = mangas.slice(0, 7);
     console.log(topManga[0]);
 
     return (
@@ -37,9 +37,9 @@ const TopManga = () => {
                             {topManga.map((manga, index) => {
                                 if (index == 0 || index > 3) return; 
                                 return (
-                                    <MDBCol md="4">
+                                    <MDBCol md="4" key={index} className="otherTopManga">
                                         <img 
-                                          className="otherTopManga" 
+                                          className="imgcoverTopManga"
                                           src={process.env.REACT_APP_SERVER_URL + topManga[index].cover}
                                         />
                                     </MDBCol>
@@ -50,9 +50,9 @@ const TopManga = () => {
                             {topManga.map((manga, index) => {
                                 if (index == 0 || index <= 3) return; 
                                 return (
-                                    <MDBCol md="4">
-                                        <img 
-                                          className="otherTopManga" 
+                                    <MDBCol md="4" key={index} className="otherTopManga">
+                                        <img
+                                          className="imgcoverTopManga"
                                           src={process.env.REACT_APP_SERVER_URL + topManga[index].cover}
                                         />
                                     </MDBCol>
