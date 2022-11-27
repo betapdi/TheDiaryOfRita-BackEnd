@@ -18,6 +18,7 @@ class Manga(models.Model):
  
 	created = models.DateTimeField(auto_now_add = True) #auto_now: can change, auto_now_add: once
 	updated = models.DateTimeField(auto_now = True)
+	#auto_now only update when call Model.save(), Queryset.update() doesn't affect this. What a nice thing, luv it <3.
 
 	def __str__(self):
 		return self.name
@@ -69,7 +70,7 @@ class Banner(models.Model):
 
 class DayViews(models.Model):
   manga = models.ForeignKey(Manga, on_delete = models.CASCADE, null = True, related_name = 'dayViews')
-  day = models.DateField(auto_now_add = True)
+  currentDay = models.DateField(auto_now_add = True)
   views = models.IntegerField(default = 0)
   
 class ReadingStatus(models.Model):

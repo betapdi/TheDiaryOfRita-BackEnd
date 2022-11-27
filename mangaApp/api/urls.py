@@ -31,4 +31,7 @@ urlpatterns = [
     
     ### Banner url ###
     path('bannerList/', views.getBannerList),
+    
+    ### Manga ranking ###
+    path('ranking/', views.getMangaRanking),
 ]

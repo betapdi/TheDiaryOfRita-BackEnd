@@ -1,5 +1,7 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews
+from django.db.models import Sum
+import datetime
 
 #Manga needed serializer
 class MangaSerializer(ModelSerializer):
@@ -37,3 +39,31 @@ class FavouriteMangaSerializer(ModelSerializer):
     class Meta:
         model = FavouriteManga
         fields = ['id', 'user', 'mangaList']
+        
+
+class MangaRankingSerializer(ModelSerializer):
+    viewsDay = SerializerMethodField()
+    viewsWeek = SerializerMethodField()
+    viewsMonth = SerializerMethodField()
+
+    def get_viewsDay(self, obj):
+        today = datetime.date.today()
+        views = DayViews.objects.get(manga = obj, currentDay = today).views
+        return views
+        
+    def get_viewsWeek(self, obj):
+        today = datetime.date.today()
+        monday = today - datetime.timedelta(today.weekday())
+        sunday = today + datetime.timedelta(7 - today.weekday() - 1)
+        chosenDays = DayViews.objects.filter(currentDay__range = [monday, sunday])
+        views = chosenDays.aggregate(totalViews = Sum('views'))
+        return views['totalViews']
+        
+    def get_viewsMonth(self, obj):
+        currentMonth = datetime.date.today().month
+        views = DayViews.objects.filter(currentDay__month = currentMonth).aggregate(totalViews = Sum('views'))
+        return views['totalViews']
+
+    class Meta:
+        model = Manga
+        fields = '__all__'

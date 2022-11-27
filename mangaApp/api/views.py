@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews
-from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer
+from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer, MangaRankingSerializer
 from django.core.files.images import ImageFile
 from django.core.files import File as DjangoFile
 
@@ -182,10 +182,11 @@ def removeFavouriteManga(request):
     return Response(serializer.data)
 
 
-####### Manga Views Counting #######
+####### Manga Views Handling #######
 @api_view(['POST'])
 def addView(request, pk):
     manga = Manga.objects.get(id = pk)
+    Manga.objects.filter(id = pk).update(views = manga.views + 1)
     day = request.data['day']
     
     if DayViews.objects.filter(day = day, manga = manga).exists():
@@ -198,5 +199,10 @@ def addView(request, pk):
         dayViews.save()
     
     return Response(status = status.HTTP_200_OK)
-        
+
+@api_view(['GET'])
+def getMangaRanking(request):
+    mangas = Manga.objects.all()
+    serializer = MangaRankingSerializer(mangas, many = True)
+    return Response(serializer.data)
     
