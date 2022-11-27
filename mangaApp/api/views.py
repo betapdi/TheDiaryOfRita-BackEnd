@@ -191,9 +191,11 @@ def addView(request, pk):
     if DayViews.objects.filter(day = day, manga = manga).exists():
         dayViews = DayViews.objects.get(day = day, manga = manga)
         dayViews.views += 1
+        dayViews.save()
     else:
         dayViews = DayViews.objects.create(day = day, manga = manga)
         dayViews.views += 1
+        dayViews.save()
     
     return Response(status = status.HTTP_200_OK)
         
