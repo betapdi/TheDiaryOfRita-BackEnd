@@ -55,13 +55,13 @@ class MangaRankingSerializer(ModelSerializer):
         today = datetime.date.today()
         monday = today - datetime.timedelta(today.weekday())
         sunday = today + datetime.timedelta(7 - today.weekday() - 1)
-        chosenDays = DayViews.objects.filter(currentDay__range = [monday, sunday])
+        chosenDays = DayViews.objects.filter(manga = obj, currentDay__range = [monday, sunday])
         views = chosenDays.aggregate(totalViews = Sum('views'))
         return views['totalViews']
         
     def get_viewsMonth(self, obj):
         currentMonth = datetime.date.today().month
-        views = DayViews.objects.filter(currentDay__month = currentMonth).aggregate(totalViews = Sum('views'))
+        views = DayViews.objects.filter(manga = obj, currentDay__month = currentMonth).aggregate(totalViews = Sum('views'))
         return views['totalViews']
 
     class Meta:
