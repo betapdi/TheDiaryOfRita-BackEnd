@@ -16,8 +16,8 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
 
 .topMangaComponentContainer {
   margin-top: 5vw;
-  border-left: 0.5rem solid #ffdee7;
-  border-top: 0.5rem solid #ffdee7;
+  border-left: 0.5rem solid #F29393;
+  border-top: 0.5rem solid #F29393;
   border-radius: 3rem;
   margin-left: 15vw;
   margin-right: 15vw;
@@ -33,6 +33,7 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
     }
     .btn {
       font-family: "Quicksand", sans-serif;
+      border: none;
       font-size: 1.2rem;
       width: 10rem;
       height: 3rem;
@@ -46,6 +47,11 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
       -moz-transition: background-color 0.3s ease, border-radius 0.5s ease-in;
       -o-transition: background-color 0.3s ease, border-radius 0.5s ease-in;
       transition: background-color 0.3s ease, border-radius 0.5s ease-in;
+    }
+
+    .hr {
+      width: 70%;
+      border-top: 5px solid #8c8b8b;
     }
   }
 
@@ -85,9 +91,9 @@ $imgcovertopmanga_maxheight: $othertopmanga_maxheight - 2 * $othertopmanga_borde
     }
     
     .imgcoverTopManga {
-      width: $imgcovertopmanga_maxwidth;
-      height: $imgcovertopmanga_maxheight;
-      border: 0.5vw solid #ffdee7;
+      max-width: $imgcovertopmanga_maxwidth;
+      max-height: $imgcovertopmanga_maxheight;
+      border: 0.5vw solid #F29393;
       border-radius: 1rem;
     }
 

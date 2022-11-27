@@ -41,7 +41,7 @@ const TopManga = () => {
     useEffect(() => {
       $(".mostViewOption"+previousMostViewOption).css("background-color", "white");
       $(".mostViewOption"+previousMostViewOption).css("border-radius", "0rem");
-      $(".mostViewOption"+mostViewOption).css("background-color", "#ffdee7");
+      $(".mostViewOption"+mostViewOption).css("background-color", "#F29393");
       $(".mostViewOption"+mostViewOption).css("border-radius", "3rem");
 
     }, [mostViewOption]);
@@ -59,6 +59,7 @@ const TopManga = () => {
           <button className="mostDayViewBtn btn mostViewOption0" onClick={() => {changeMostViewOption(mangas.slice(0, 7), 0)}}>View ngày</button>
           <button className="mostWeekViewBtn btn mostViewOption1" onClick={() => {changeMostViewOption(mangas.slice(1, 8), 1)}}>View tuần</button>
           <button className="mostMonthViewBtn btn mostViewOption2" onClick={() => {changeMostViewOption(mangas.slice(2, 9), 2)}}>View tháng</button>
+          <hr className='hr'/>
         </div>
         <MDBRow className="topMangaContainer">
             {topManga.length > 0 && (
