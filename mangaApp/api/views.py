@@ -2,11 +2,13 @@ import zipfile
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import status
 
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews
 from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer
 from django.core.files.images import ImageFile
 from django.core.files import File as DjangoFile
+
 #safe = False mean can use data by any languages like queryset of python to json data
 
 
@@ -178,5 +180,21 @@ def removeFavouriteManga(request):
     favoMangas = user.favourMangas
     serializer = FavouriteMangaSerializer(favoMangas, many = False)
     return Response(serializer.data)
+
+
+####### Manga Views Counting #######
+@api_view(['POST'])
+def addView(request, pk):
+    manga = Manga.objects.get(id = pk)
+    day = request.data['day']
     
+    if DayViews.objects.filter(day = day, manga = manga).exists():
+        dayViews = DayViews.objects.get(day = day, manga = manga)
+        dayViews.views += 1
+    else:
+        dayViews = DayViews.objects.create(day = day, manga = manga)
+        dayViews.views += 1
+    
+    return Response(status = status.HTTP_200_OK)
+        
     
