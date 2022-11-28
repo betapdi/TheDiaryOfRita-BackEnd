@@ -48,21 +48,34 @@ class MangaRankingSerializer(ModelSerializer):
 
     def get_viewsDay(self, obj):
         today = datetime.date.today()
-        views = DayViews.objects.get(manga = obj, currentDay = today).views
-        return views
+
+        if DayViews.objects.filter(manga = obj, currentDay = today).exists():
+            views = DayViews.objects.get(manga = obj, currentDay = today).views
+            return views
+
+        return 0
         
     def get_viewsWeek(self, obj):
         today = datetime.date.today()
         monday = today - datetime.timedelta(today.weekday())
         sunday = today + datetime.timedelta(7 - today.weekday() - 1)
-        chosenDays = DayViews.objects.filter(manga = obj, currentDay__range = [monday, sunday])
-        views = chosenDays.aggregate(totalViews = Sum('views'))
-        return views['totalViews']
+
+        if DayViews.objects.filter(manga = obj, currentDay__range = [monday, sunday]).exists():
+            chosenDays = DayViews.objects.filter(manga = obj, currentDay__range = [monday, sunday])
+            views = chosenDays.aggregate(totalViews = Sum('views'))
+            return views['totalViews']
+        
+        return 0
         
     def get_viewsMonth(self, obj):
         currentMonth = datetime.date.today().month
-        views = DayViews.objects.filter(manga = obj, currentDay__month = currentMonth).aggregate(totalViews = Sum('views'))
-        return views['totalViews']
+        
+        if DayViews.objects.filter(manga = obj, currentDay__month = currentMonth).exists():
+            chosenDays = DayViews.objects.filter(manga = obj, currentDay__month = currentMonth)
+            views = chosenDays.aggregate(totalViews = Sum('views'))
+            return views['totalViews']
+
+        return 0
 
     class Meta:
         model = Manga
