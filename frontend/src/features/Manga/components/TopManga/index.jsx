@@ -2,10 +2,10 @@ import $ from 'jquery';
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import mangaApi from '../../../../api/mangaApi';
 import { getAllManga } from '../../slices/mangaListSlice';
 import "./TopManga.scss";
-import {useNavigate} from 'react-router-dom';
 
 const TopManga = () => {
     const navigate = useNavigate()
@@ -35,7 +35,7 @@ const TopManga = () => {
       const Xpos_topMangaComponentElement = window.scrollX + document.querySelector('.topMangaComponentContainer').getBoundingClientRect().left;
       const Xpos = Xpos_topMangaComponentElement - Xpos_topMangaElement;
       $(".extraComponentInTopManga").css("margin-left", Xpos - + "px");
-      $(".extraComponentInTopManga").css("transform", "translateX(1.5vw)");
+      $(".extraComponentInTopManga").css("transform", "translateX(1vw)");
     }, [mangas]);
 
     useEffect(() => {
@@ -56,10 +56,11 @@ const TopManga = () => {
       <div className="topMangaComponentContainer">
         <div className="extraComponentInTopManga">
           <p className="topMangaLabel">Top Manga</p>
-          <button className="mostDayViewBtn btn mostViewOption0" onClick={() => {changeMostViewOption(mangas.slice(0, 7), 0)}}>View ngày</button>
-          <button className="mostWeekViewBtn btn mostViewOption1" onClick={() => {changeMostViewOption(mangas.slice(1, 8), 1)}}>View tuần</button>
-          <button className="mostMonthViewBtn btn mostViewOption2" onClick={() => {changeMostViewOption(mangas.slice(2, 9), 2)}}>View tháng</button>
-          <hr className='hr'/>
+          <div className="btnComponents">
+            <button className="mostDayViewBtn btn mostViewOption0" onClick={() => {changeMostViewOption(mangas.slice(0, 7), 0)}}>View ngày</button>
+            <button className="mostWeekViewBtn btn mostViewOption1" onClick={() => {changeMostViewOption(mangas.slice(1, 8), 1)}}>View tuần</button>
+            <button className="mostMonthViewBtn btn mostViewOption2" onClick={() => {changeMostViewOption(mangas.slice(2, 9), 2)}}>View tháng</button>
+          </div>
         </div>
         <MDBRow className="topMangaContainer">
             {topManga.length > 0 && (

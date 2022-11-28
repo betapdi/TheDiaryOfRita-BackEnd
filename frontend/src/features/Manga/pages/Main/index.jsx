@@ -29,6 +29,8 @@ const MainPage = () => {
   return (
     <div className = "main-page">
       <TopManga/>
+      
+      <div className="TESTING" height={"500px"} style={{margin: "50vw"}}>.</div>
     </div>
   )
 }
