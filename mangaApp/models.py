@@ -32,6 +32,7 @@ class MangaPackage(models.Model):
 
 class Chapter(models.Model):
 	mangaName = models.ForeignKey(Manga, on_delete = models.CASCADE, related_name = 'chapter', null = True, blank = True, default = None)
+	title = models.TextField(null = True, blank = True)
 	chapterZipData = models.FileField(null = True)
 	index = models.IntegerField(default = 0)
  
@@ -81,4 +82,5 @@ class MangaReadingHistory(models.Model):
 	readingHistory = models.ForeignKey(ReadingStatus, on_delete = models.CASCADE)
 	manga = models.ForeignKey(Manga, on_delete = models.CASCADE)
 	lastRead = models.DateTimeField(auto_now = True)
+	watchedChapters = models.ManyToManyField(Chapter, blank = True, related_name = 'readingHistory')
     
