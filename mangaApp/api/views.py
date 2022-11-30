@@ -113,11 +113,13 @@ def handleUploadedMangaPackage(myZipFile, mangaName):
             chapterIndex = chapterIndex.replace('Chapter ', '')
             chapterIndex = int(chapterIndex.replace('.zip', ''))
             
-            if Chapter.objects.filter(mangaName = mangaName, index = chapterIndex).exists(): 
-                continue
-            
             childZipData = DjangoFile(data_zip.open(files[i], mode = 'r'))
-            Chapter.objects.create(mangaName = mangaName, chapterZipData = childZipData, index = chapterIndex)
+            
+            try:
+                chapter = Chapter.objects.get(mangaName = mangaName, index = chapterIndex)
+            except Chapter.DoesNotExist:
+                Chapter.objects.create(mangaName = mangaName, chapterZipData = childZipData, index = chapterIndex)
+                
             handleUploadedChapter(childZipData, Chapter.objects.latest('id'))
 
 def handleUploadedChapter(myZipFile, chapterIndex):                                                                                                 
@@ -189,14 +191,9 @@ def addView(request, pk):
     Manga.objects.filter(id = pk).update(views = manga.views + 1)
     day = request.data['day']
     
-    if DayViews.objects.filter(day = day, manga = manga).exists():
-        dayViews = DayViews.objects.get(day = day, manga = manga)
-        dayViews.views += 1
-        dayViews.save()
-    else:
-        dayViews = DayViews.objects.create(day = day, manga = manga)
-        dayViews.views += 1
-        dayViews.save()
+    dayViews, created = DayViews.objects.get_or_create(manga = manga, day = day)
+    dayViews.views += 1
+    dayViews.save()
     
     return Response(status = status.HTTP_200_OK)
 
