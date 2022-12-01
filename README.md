@@ -23,6 +23,7 @@ Django request types:\
     - Check models in mangaApp/models.py
 
 React modules:\
+    - npm install firebase\
     - npm install @mui/icons-material @mui/material @emotion/styled @emotion/react\
     - npm install jwt-decode\
     - npm install axios\
