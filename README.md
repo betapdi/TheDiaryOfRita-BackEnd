@@ -9,7 +9,9 @@ Django modules:\
     - pip install djangorestframework\
     - pip install djangorestframework-simplejwt\
     - pip install django-cors-headers\
-    - pip install Pillow
+    - pip install Pillow\
+    - pip install django-dotenv\
+    - pip install firebase-admin
 
 Django server initialization:\
     - python manage.py runserver\

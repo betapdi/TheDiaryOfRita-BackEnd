@@ -3,15 +3,22 @@ import { } from '../../userSlice'
 import { useNavigate } from 'react-router-dom'
 import RegisterForm from '../../components/RegisterForm'
 import userApi from '../../../../api/userApi'
+import { useDispatch } from 'react-redux'
+import { createUser } from '../../userSlice'
 
 const RegisterPage = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   
   const handleSubmit = async (values) => {
     console.log('Form submit: ', values)
 
-    const response = await userApi.register(values)
-    console.log(response)
+    try {
+      dispatch(createUser(values));
+    } catch (e) {
+      console.log(e.message);
+    }
+
   }
 
   return (

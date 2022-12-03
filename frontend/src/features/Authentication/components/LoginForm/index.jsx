@@ -7,7 +7,7 @@ import InputField from '../../../../custom-fields/InputField';
 
 const LoginForm = (props) => {
   const initialValues = {
-    username: '',
+    email: '',
     password: '',
   }
 
@@ -23,11 +23,12 @@ const LoginForm = (props) => {
         return (
           <Form>
             <FastField
-              name = "username"
+              name = "email"
               component = {InputField}
 
-              label = "Username"
-              placeholder = "Input your Username"
+              label = "Email"
+              type = "email"
+              placeholder = "Input your Email"
             />
 
             <FastField

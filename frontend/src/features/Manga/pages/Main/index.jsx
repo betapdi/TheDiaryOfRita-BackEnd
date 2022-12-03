@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import mangaApi from '../../../../api/mangaApi'
+import { auth } from '../../../../firebase/firebase-config'
 import TopManga from '../../components/TopManga'
 import { getAllManga } from '../../slices/mangaListSlice'
 

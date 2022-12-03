@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 
 from mangaApp.models import FavouriteManga
+from .serializers import UserSerializer
 
 ####### Customized Token Information #######
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -27,17 +28,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-@api_view(['POST'])
-def registerUser(request):
-    username = request.data['username']
-    email = request.data['email']
-    password = request.data['password']
-
-    if User.objects.filter(Q(username = username) | Q(email = email)).exists():
-        return Response(status = status.HTTP_409_CONFLICT)
-
-    user = User.objects.create_user(username, email, password)
-    user.save()
-
-    FavouriteManga.objects.create(user = user)
-    return Response(status = status.HTTP_201_CREATED)
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getUserData(request):
+    serializer = UserSerializer(request.user, many = False)
+    return Response(serializer.data)

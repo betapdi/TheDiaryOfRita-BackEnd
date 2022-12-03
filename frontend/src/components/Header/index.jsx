@@ -27,7 +27,7 @@ const Header = () => {
           </Col>
 
           <Col xs = "auto">
-            {userState.user == null 
+            {userState.userData == null 
               ? <span>
                 <Link to = '/auth'>Login</Link> |
                 <Link to = '/auth/register'>Register</Link> 

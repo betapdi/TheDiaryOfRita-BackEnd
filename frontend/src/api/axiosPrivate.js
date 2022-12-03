@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
+import { auth } from '../firebase/firebase-config';
 
 const axiosPrivate = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -13,6 +14,9 @@ const axiosPrivate = axios.create({
 });
 
 axiosPrivate.interceptors.request.use(async (config) => {
+  const token = await auth.currentUser.getIdToken();
+  config.headers['Authorization'] = 'Bearer ' + token;
+  
   return config;
 }, (error) => {
   return Promise.reject(error)

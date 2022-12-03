@@ -1,5 +1,5 @@
-import axios from "axios"
 import axiosClient from "./axiosClient"
+import axiosPrivate from "./axiosPrivate"
 
 const mangaApi = {
   getAll: (params) => {
@@ -19,7 +19,7 @@ const mangaApi = {
 
   getAllFavourites: () => {
     const url = '/mangaApp/favourites/'
-    return axiosClient.get(url)
+    return axiosPrivate.get(url)
   },
 
   addManga: (data) => {

@@ -16,21 +16,6 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(async (config) => {
-  let currentDate = new Date();
-  const decodedToken = (localStorage.getItem('authTokens') ? jwt_decode((JSON.parse(localStorage.getItem('authTokens'))).access) : null)
-  const authTokens = (localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
-
-  if (decodedToken == null) return config;
-  
-  if (decodedToken.exp * 1000 < currentDate.getTime()) {
-    console.log("Expired")
-    await store.dispatch(updateToken({refresh: authTokens.refresh}))
-    config.headers["Authorization"] = `Bearer ${store.getState().userData.authTokens.access}`;
-  }
-
-  else {
-    config.headers["Authorization"] = `Bearer ${authTokens.access}`;
-  }
   return config;
 }, (error) => {
   return Promise.reject(error)

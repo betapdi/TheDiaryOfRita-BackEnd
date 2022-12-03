@@ -7,8 +7,10 @@ import Header from './components/Header';
 
 import Banner from './components/Banner';
 import Authentication from './features/Authentication';
-import { updateToken } from './features/Authentication/userSlice';
+
 import { useDispatch } from 'react-redux';
+import { auth } from './firebase/firebase-config';
+import { getUserData } from './features/Authentication/userSlice';
 const Manga = React.lazy(() => import('./features/Manga'));
 
 function App() {
@@ -16,13 +18,21 @@ function App() {
   const [hasToken, setHasToken] = useState(false)
 
   useEffect(() => {
-    const getToken = async () => {
-      const token = (localStorage.getItem('authTokens') ? (JSON.parse(localStorage.getItem('authTokens'))).refresh : null)
-      if (token != null) dispatch(updateToken({refresh: token}))
-      setHasToken(true)
-    }
+    const unregisterAuthObserver = auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        //user logout, handle here!
 
-    getToken()
+        setHasToken(true);
+        return;
+      }
+
+      const token = await user.getIdToken();
+      dispatch(getUserData())
+      console.log('User token: ', token);
+      setHasToken(true);
+    });
+
+    return () => unregisterAuthObserver();
   }, [])
   
   return (
