@@ -21,6 +21,11 @@ const mangaApi = {
     const url = '/mangaApp/favourites/'
     return axiosPrivate.get(url)
   },
+  
+  getTopMangas: () => {
+    const url = '/mangaApp/topMangas/'
+    return axiosPrivate.get(url)
+  },
 
   addManga: (data) => {
     const formData = new FormData()

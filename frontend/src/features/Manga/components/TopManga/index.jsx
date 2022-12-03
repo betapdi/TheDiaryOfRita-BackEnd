@@ -4,30 +4,32 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import mangaApi from '../../../../api/mangaApi';
-import { getAllManga } from '../../slices/mangaListSlice';
+import { getTopManga } from '../../slices/topMangaSlice';
 import "./TopManga.scss";
 
 const TopManga = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const mangaRanking = useSelector((state) => state);  
     const [topManga, setTopManga] = useState([]);
     const [mostViewOption, setMostViewOption] = useState(0);
     const [previousMostViewOption, setPreviousMostViewOption] = useState(0);
 
     useEffect(() => {
-        const fetchMangaList = async () => {
-            try {
-                await mangaApi.getAll();
-                dispatch(getAllManga());
-            } catch (error) {
-                console.log("Failed to fetch manga list: ", error);
-            }
-        };
+      const fetchTopMangas = async () => {
+          try {
+              await mangaApi.getTopMangas();
+              dispatch(getTopManga());
+          } catch (error) {
+              console.log("Failed to fetch top manga list: ", error);
+          }
+      };
 
-        fetchMangaList();
+      fetchTopMangas();
     }, []);
 
-    const mangas = useSelector((state) => state.mangaList);
+    const mangas = useSelector((state) => state.topManga);
+    console.log("top manga", mangas);
 
     useEffect(() => {
       setTopManga(mangas.slice(0, 7));
