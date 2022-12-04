@@ -11,14 +11,12 @@ const LoginPage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     dispatch(loginUser(values));
-    navigate('/')
   }
 
   const handleLoginGoogle = async () => {
     dispatch(googleLogin());
-    navigate('/')
   }
 
   return (
