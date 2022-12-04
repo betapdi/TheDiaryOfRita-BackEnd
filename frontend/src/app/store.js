@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import userReducer from "../features/Authentication/userSlice"
 import categoryReducer from "../features/Manga/slices/categorySlice"
+import favouriteReducer from "../features/Manga/slices/favouriteSlice"
 import mangaListReducer from "../features/Manga/slices/mangaListSlice"
 import mangaReducer from "../features/Manga/slices/mangaSlice"
+import topMangaReducer from "../features/Manga/slices/topMangaSlice"
 import bannerReducer from "../slices/bannerSlice"
-import favouriteReducer from "../features/Manga/slices/favouriteSlice"
 
 const rootReducer = {
   userData: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = {
   bannerList: bannerReducer,
   manga: mangaReducer,
   favouriteList: favouriteReducer,
+  topManga: topMangaReducer,
 }
 
 const store = configureStore({

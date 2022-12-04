@@ -10,5 +10,4 @@ urlpatterns = [
     path('mangaAutocomplete/', views.mangaAutocomplete, name = 'mangaAutocomplete'),
     path('<int:pk>/', views.mangaDetails, name = 'mangaDetails'),
     path('<int:mangaPk>/<int:chapterPk>/', views.chapterDetails, name = 'chapterDetails'),
-    
 ]
