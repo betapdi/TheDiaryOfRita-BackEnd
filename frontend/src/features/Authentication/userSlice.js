@@ -5,8 +5,6 @@ import jwt_decode from "jwt-decode"
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
