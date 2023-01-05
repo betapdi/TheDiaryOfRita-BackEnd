@@ -72,6 +72,11 @@ const mangaApi = {
   deleteManga: (id) => {
     const url = `/mangaApp/${id}/delete/`;
     return axiosPrivate.delete(url);
+  },
+
+  deleteChapter: (mangaId, chapterId) => {
+    const url = `/mangaApp/${mangaId}/${chapterId}/delete/`;
+    return axiosPrivate.delete(url)
   }
 
   //To Do: Check authorization when upload data

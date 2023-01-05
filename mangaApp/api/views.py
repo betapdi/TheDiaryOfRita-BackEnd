@@ -26,7 +26,8 @@ def getRoutes(request):
         'GET /api/mangaApp/:id/chapterList/',
         'POST /api/mangaApp/:id/chapter/upload/',
         'POST /api/mangaApp/:id/chapter/uploadMulti/',
-        'GET /api/mangaApp/:id/:chapterId',
+        'GET /api/mangaApp/:id/:chapterId/',
+        'DELETE /api/mangaApp/:id/:chapterId/delete/'
         '',
         'GET /api/mangaApp/favourites/',
         'POST /api/mangaApp/favourites/add/',
@@ -128,6 +129,12 @@ def handleUploadedChapter(myZipFile, chapterIndex):
         
         for i in range(len(files)):
             Picture.objects.create(chapter = chapterIndex, image = ImageFile(data_zip.open(files[i])))
+
+@api_view(['DELETE'])
+def deleteChapter(request, pk, index):
+    chapter = Chapter.objects.get(mangaName__id = pk, index = index)
+    chapter.delete()
+    return Response('Chapter was deleted!')
             
             
             
