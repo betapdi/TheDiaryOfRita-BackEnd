@@ -37,7 +37,7 @@ const mangaApi = {
     formData.append('cover_image', data.cover_image)
 
     const url = '/mangaApp/newManga/'
-    return axiosClient.post(url, formData, {
+    return axiosPrivate.post(url, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       }
@@ -50,7 +50,7 @@ const mangaApi = {
     formData.append('chapterData', data.chapter_data)
 
     const url = `/mangaApp/${data.manga_name}/chapter/upload/`
-    return axiosClient.post(url, formData, {
+    return axiosPrivate.post(url, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       }
@@ -62,11 +62,16 @@ const mangaApi = {
     formData.append('chapterData', data.chapter_data)
 
     const url = `/mangaApp/${data.manga_name}/chapter/uploadMulti/`
-    return axiosClient.post(url, formData, {
+    return axiosPrivate.post(url, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       }
     })
+  },
+
+  deleteManga: (id) => {
+    const url = `/mangaApp/${id}/delete/`;
+    return axiosPrivate.delete(url);
   }
 
   //To Do: Check authorization when upload data
