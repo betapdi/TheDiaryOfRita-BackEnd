@@ -24,7 +24,7 @@ const mangaApi = {
   
   getTopMangas: () => {
     const url = '/mangaApp/topMangas/'
-    return axiosPrivate.get(url)
+    return axiosClient.get(url)
   },
 
   addManga: (data) => {

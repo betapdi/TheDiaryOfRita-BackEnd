@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import userApi from '../../api/userApi'
-import jwt_decode from "jwt-decode"
 
 import {
   createUserWithEmailAndPassword,
@@ -12,7 +11,6 @@ import {
 } from 'firebase/auth'
 
 import { auth } from '../../firebase/firebase-config'
-import { async } from '@firebase/util'
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
