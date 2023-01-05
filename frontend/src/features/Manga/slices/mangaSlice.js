@@ -11,6 +11,14 @@ export const getMangaData = createAsyncThunk(
   }
 )
 
+export const deleteManga = createAsyncThunk(
+  'manga/deleteManga',
+  async (mangaId) => {
+    await mangaApi.deleteManga(mangaId);
+    return mangaId;
+  }
+)
+
 const manga = createSlice({
   name: 'manga',
   initialState: null,
@@ -21,6 +29,11 @@ const manga = createSlice({
   extraReducers: {
     [getMangaData.fulfilled]: (state, action) => {
       return action.payload
+    },
+
+    [deleteManga.fulfilled]: (state, action) => {
+      const newState = state.filter((item) => item.id !== action.payload);
+      state = newState;
     }
   },
 })
