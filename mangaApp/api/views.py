@@ -93,6 +93,7 @@ def getImages(request, pk, index):
 @api_view(['POST'])
 def addChapter(request, pk):
     manga = Manga.objects.get(id = pk)
+    manga.save()
     chapter = Chapter.objects.create(mangaName = manga, chapterZipData = request.data['chapterData'], index = request.data['chapterId'])
     handleUploadedChapter(chapter.chapterZipData, chapter)
     serializer = ChapterSerializer(chapter, many = False)
@@ -101,6 +102,7 @@ def addChapter(request, pk):
 @api_view(['POST'])
 def addMultiChapters(request, pk):
     manga = Manga.objects.get(id = pk)
+    manga.save()
     handleUploadedMangaPackage(request.data['chapterData'], manga)
     chapters = Chapter.objects.filter(mangaName__id = pk)
     serializer = ChapterSerializer(chapters, many = True)
@@ -173,8 +175,7 @@ def getFavouriteMangas(request):
 def addFavouriteManga(request):
     user = request.user
     manga = Manga.objects.get(id = request.data['mangaId'])
-    manga.favourites += 1
-    manga.save()
+    Manga.objects.filter(id = request.data['mangaId']).update(favourites = manga.favourites + 1)
     user.favourMangas.mangas.add(manga)
     
     favoMangas = user.favourMangas
@@ -186,8 +187,7 @@ def addFavouriteManga(request):
 def removeFavouriteManga(request):
     user = request.user
     manga = Manga.objects.get(id = request.data['mangaId'])
-    manga.favourites -= 1
-    manga.save()
+    Manga.objects.filter(id = request.data['mangaId']).update(favourites = manga.favourites - 1)
     user.favourMangas.mangas.remove(manga)
     
     favoMangas = user.favourMangas
@@ -199,8 +199,7 @@ def removeFavouriteManga(request):
 @api_view(['POST'])
 def addView(request, pk):
     manga = Manga.objects.get(id = pk)
-    manga.views += 1
-    manga.save()
+    Manga.objects.filter(id = pk).update(views = manga.views + 1)
     day = request.data['day']
     
     dayViews, created = DayViews.objects.get_or_create(manga = manga, day = day)
