@@ -173,6 +173,8 @@ def getFavouriteMangas(request):
 def addFavouriteManga(request):
     user = request.user
     manga = Manga.objects.get(id = request.data['mangaId'])
+    manga.favourites += 1
+    manga.save()
     user.favourMangas.mangas.add(manga)
     
     favoMangas = user.favourMangas
@@ -184,6 +186,8 @@ def addFavouriteManga(request):
 def removeFavouriteManga(request):
     user = request.user
     manga = Manga.objects.get(id = request.data['mangaId'])
+    manga.favourites -= 1
+    manga.save()
     user.favourMangas.mangas.remove(manga)
     
     favoMangas = user.favourMangas
@@ -195,7 +199,8 @@ def removeFavouriteManga(request):
 @api_view(['POST'])
 def addView(request, pk):
     manga = Manga.objects.get(id = pk)
-    Manga.objects.filter(id = pk).update(views = manga.views + 1)
+    manga.views += 1
+    manga.save()
     day = request.data['day']
     
     dayViews, created = DayViews.objects.get_or_create(manga = manga, day = day)

@@ -12,8 +12,8 @@ class Manga(models.Model):
 	cover = models.FileField(null = True)
  
 	views = models.IntegerField(default = 0)
-	likes = models.IntegerField(default = 0)
-	totalStars = models.IntegerField(default = 0)
+	favourites = models.IntegerField(default = 0)
+	totalStars = models.FloatField(default = 0)
 	totalVotes = models.IntegerField(default = 0)
  
 	created = models.DateTimeField(auto_now_add = True) #auto_now: can change, auto_now_add: once
