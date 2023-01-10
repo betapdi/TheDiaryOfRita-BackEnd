@@ -147,6 +147,12 @@ def getCategoryList(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many = True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def addCategory(request):
+    category, created = Category.objects.get_or_create(name = request.data['name'])
+    serializer = CategorySerializer(category, many = False)
+    return Response(serializer.data)
     
     
     
@@ -195,7 +201,7 @@ def removeFavouriteManga(request):
     return Response(serializer.data)
 
 
-####### Manga Views Handling #######
+####### Manga Optional Stuff Handling #######
 @api_view(['POST'])
 def addView(request, pk):
     manga = Manga.objects.get(id = pk)
