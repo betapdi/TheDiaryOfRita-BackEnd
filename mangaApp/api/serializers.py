@@ -12,7 +12,7 @@ class MangaSerializer(ModelSerializer):
 class ChapterSerializer(ModelSerializer):
     class Meta:
         model = Chapter
-        fields = ['id', 'index']
+        fields = ['id', 'index', 'title']
         
 class PictureSerializer(ModelSerializer):
     class Meta:
