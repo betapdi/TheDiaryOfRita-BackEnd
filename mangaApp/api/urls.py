@@ -15,7 +15,7 @@ urlpatterns = [
     path('<int:pk>/chapter/upload/', views.addChapter),
     path('<int:pk>/chapter/uploadMulti/', views.addMultiChapters),
     path('<int:pk>/<int:index>/delete/', views.deleteChapter),
-    path('<int:pk>/<int:index>', views.getImages),
+    path('<int:pk>/<int:index>/', views.getImages),
     
     ### Favourite Manga url ###
     path('favourites/', views.getFavouriteMangas),
