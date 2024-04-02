@@ -84,8 +84,8 @@ def getChapters(request, pk):
     return Response(serialzer.data)
 
 @api_view(['GET'])
-def getImages(request, pk, index):
-    chapter = Chapter.objects.get(mangaName__id = pk, index = index)
+def getImages(request, pk, chapterId):
+    chapter = Chapter.objects.get(mangaName__id = pk, id = chapterId)
     pictures = chapter.image.all()
     serializer = PictureSerializer(pictures, many = True)
     return Response(serializer.data)
@@ -133,8 +133,8 @@ def handleUploadedChapter(myZipFile, chapterIndex):
             Picture.objects.create(chapter = chapterIndex, image = ImageFile(data_zip.open(files[i])))
 
 @api_view(['DELETE'])
-def deleteChapter(request, pk, index):
-    chapter = Chapter.objects.get(mangaName__id = pk, index = index)
+def deleteChapter(request, pk, chapterId):
+    chapter = Chapter.objects.get(mangaName__id = pk, id = chapterId)
     chapter.delete()
     return Response('Chapter was deleted!')
             
