@@ -1,13 +1,15 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews
 from django.db.models import Sum
+from rest_framework import serializers
 import datetime
 
 #Manga needed serializer
-class MangaSerializer(ModelSerializer):
+class MangaSerializer(serializers.ModelSerializer):
+    categories = serializers.StringRelatedField(many = True)
     class Meta:
         model = Manga
-        fields = '__all__'
+        fields = ['name', 'description', 'cover', 'views', 'favourites', 'totalStars', 'totalVotes', 'created', 'updated', 'categories']
         
 class ChapterSerializer(ModelSerializer):
     class Meta:

@@ -50,7 +50,7 @@ class Picture(models.Model):
 		return self.image.name
     
 class Category(models.Model):
-	mangas = models.ManyToManyField(Manga, blank = True)
+	mangas = models.ManyToManyField(Manga, blank = True, related_name = 'categories')
 	name = models.CharField(max_length = 30)
 
 	def __str__(self):
