@@ -210,17 +210,18 @@ def addAlbumManga(request, albumId, mangaId):
     serializer = AlbumSerializer(album, many = False)
     return Response(serializer.data)
 
-# @api_view(['DELETE'])
-# @permission_classes([IsAuthenticated])
-# def removeFavouriteManga(request):
-#     user = request.user
-#     manga = Manga.objects.get(id = request.data['mangaId'])
-#     Manga.objects.filter(id = request.data['mangaId']).update(favourites = manga.favourites - 1)
-#     user.favourMangas.mangas.remove(manga)
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteAlbum(request, albumId):
+    user = request.user
+    album = user.albums.get(pk = albumId)
     
-#     favoMangas = user.favourMangas
-#     serializer = FavouriteMangaSerializer(favoMangas, many = False)
-#     return Response(serializer.data)      
+    #Only 
+    if (album.name != "Favourites"):
+        album.delete()
+    
+    serializer = AlbumSerializer(user.albums, many = True)
+    return Response(serializer.data)     
             
             
             
