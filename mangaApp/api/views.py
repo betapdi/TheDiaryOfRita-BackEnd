@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews
-from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer, MangaRankingSerializer
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews, Album
+from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer, MangaRankingSerializer, AlbumSerializer
 from django.core.files.images import ImageFile
 from django.core.files import File as DjangoFile
 
@@ -165,9 +165,66 @@ def getBannerList(request):
     return Response(serializer.data)
        
        
+    
        
+####### Albums Handling #######
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getAlbums(request):
+    user = request.user
+    albumList = user.albums.all()
+    serializer = AlbumSerializer(albumList, many = True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getAlbumMangaList(request, albumId):
+    user = request.user
+    album = user.albums.get(pk = albumId)
+    mangaList = album.mangaList.all()
+    serializer = MangaSerializer(mangaList, many = True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def createAlbum(request):
+    user = request.user
+    data = request.data
+    newAlbum, created = Album.objects.get_or_create(name = data['name'], user = user)
+    
+    serializer = AlbumSerializer(newAlbum, many = False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def addAlbumManga(request, albumId, mangaId):
+    user = request.user
+    album = user.albums.get(pk = albumId)
+    manga = album.mangaList.get(pk = mangaId)
+    
+    #Favourite List
+    if albumId == user.albums.get(name = "Favourites"): 
+        manga.favourites += 1
+        
+    album.mangaList.add(manga)
+    serializer = AlbumSerializer(album, many = False)
+    return Response(serializer.data)
+
+# @api_view(['DELETE'])
+# @permission_classes([IsAuthenticated])
+# def removeFavouriteManga(request):
+#     user = request.user
+#     manga = Manga.objects.get(id = request.data['mangaId'])
+#     Manga.objects.filter(id = request.data['mangaId']).update(favourites = manga.favourites - 1)
+#     user.favourMangas.mangas.remove(manga)
+    
+#     favoMangas = user.favourMangas
+#     serializer = FavouriteMangaSerializer(favoMangas, many = False)
+#     return Response(serializer.data)      
             
-####### Favourite Manga Handling #######
+            
+            
+####### Album Handling #######
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getFavouriteMangas(request):

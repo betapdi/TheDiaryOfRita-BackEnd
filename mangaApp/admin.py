@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, ReadingStatus, MangaReadingHistory, DayViews
+from .models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, ReadingStatus, MangaReadingHistory, DayViews, Album
 
 # Register your models here.
 class MangaAdmin(admin.ModelAdmin):
@@ -17,3 +17,4 @@ admin.site.register(Banner)
 admin.site.register(ReadingStatus)
 admin.site.register(MangaReadingHistory)
 admin.site.register(DayViews)
+admin.site.register(Album)

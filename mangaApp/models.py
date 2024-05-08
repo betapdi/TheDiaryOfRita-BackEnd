@@ -63,6 +63,14 @@ class FavouriteManga(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE, null = True, related_name = 'favourMangas')
 	mangas = models.ManyToManyField(Manga, blank = True, related_name = 'favourMangas')
  
+class Album(models.Model):
+  user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, related_name = 'albums')
+  mangaList = models.ManyToManyField(Manga, blank = True, related_name = 'albums')
+  name = models.CharField(max_length = 30, unique = True)
+  
+  def __str__(self):
+    return str(self.user.pk) + '_' + self.name
+ 
 class Banner(models.Model):
 	image = models.FileField(null = True)
  

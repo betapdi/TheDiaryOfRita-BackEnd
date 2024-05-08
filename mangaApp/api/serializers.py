@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews, Album
 from django.db.models import Sum
 from rest_framework import serializers
 import datetime
@@ -32,6 +32,11 @@ class BannerSerializer(ModelSerializer):
         fields = '__all__'
 
 #Manga optional serializer
+class AlbumSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ['id', 'name', 'mangaList']
+
 class FavouriteMangaSerializer(ModelSerializer):
     mangaList = SerializerMethodField()
 
