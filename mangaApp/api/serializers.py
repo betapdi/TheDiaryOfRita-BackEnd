@@ -9,7 +9,7 @@ class MangaSerializer(serializers.ModelSerializer):
     categories = serializers.StringRelatedField(many = True)
     class Meta:
         model = Manga
-        fields = ['name', 'description', 'cover', 'views', 'favourites', 'totalStars', 'totalVotes', 'created', 'updated', 'categories']
+        fields = ['id', 'name', 'description', 'cover', 'views', 'favourites', 'totalStars', 'totalVotes', 'created', 'updated', 'categories']
         
 class ChapterSerializer(ModelSerializer):
     class Meta:
