@@ -21,7 +21,9 @@ urlpatterns = [
     path('albums/', views.getAlbums),
     path('albums/<int:albumId>/', views.getAlbumMangaList),
     path('albums/create/', views.createAlbum),
-    path('albums/add/<int:albumId>/<int:mangaId>', views.addAlbumManga),
+    path('albums/add/<int:albumId>/<int:mangaId>/', views.addAlbumManga),
+    path('albums/remove/<int:albumId>/<int:mangaId>/', views.removeAlbumManga),
+    path('albums/delete/<int:albumId>/', views.deleteAlbum),
     
     ### Favourite Manga url ###
     path('favourites/', views.getFavouriteMangas),
