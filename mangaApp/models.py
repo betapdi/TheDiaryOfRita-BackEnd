@@ -66,7 +66,13 @@ class FavouriteManga(models.Model):
 class Album(models.Model):
   user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, related_name = 'albums')
   mangaList = models.ManyToManyField(Manga, blank = True, related_name = 'albums')
-  name = models.CharField(max_length = 30, unique = True)
+  name = models.CharField(max_length = 30)
+  
+  class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'name'], 
+                                    name='user_and_name_uniq')
+        ]
   
   def __str__(self):
     return str(self.user.pk) + '_' + self.name

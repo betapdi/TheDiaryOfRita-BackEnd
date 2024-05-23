@@ -200,7 +200,7 @@ def createAlbum(request):
 def addAlbumManga(request, albumId, mangaId):
     user = request.user
     album = user.albums.get(pk = albumId)
-    manga = album.mangaList.get(pk = mangaId)
+    manga = Manga.objects.get(pk = mangaId)
     
     #Favourite List
     if albumId == user.albums.get(name = "Favourites"): 
