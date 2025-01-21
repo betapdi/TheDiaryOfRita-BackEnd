@@ -293,4 +293,14 @@ def getMangaRanking(request):
     mangas = Manga.objects.all()
     serializer = MangaRankingSerializer(mangas, many = True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def rateManga(request, pk):
+    manga = Manga.objects.get(id = pk)
+    manga.totalStars += request.data['rating']
+    manga.totalVotes += 1
+    manga.save()
+
+
     
