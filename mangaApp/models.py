@@ -22,6 +22,19 @@ class Manga(models.Model):
 
 	def __str__(self):
 		return self.name
+	
+class MangaUserRating(models.Model):
+	user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'mangaRating', null = True, default = None)
+	manga = models.ForeignKey(Manga, on_delete = models.CASCADE, related_name = 'userRating', null = True, default = None)
+	rating = models.PositiveSmallIntegerField(default = 0)
+
+	class Meta:
+		constraints = [
+      models.UniqueConstraint(fields=['user', 'manga'], name='user_manga_unique')
+    ]
+
+	def __str__(self):
+		return f'{self.user.username} rated {self.manga.name} as {self.rating}'
 
 class MangaPackage(models.Model):
 	mangaName = models.ForeignKey(Manga, on_delete = models.CASCADE, related_name = 'mangaPackage', null = True, blank = True, default = None)
