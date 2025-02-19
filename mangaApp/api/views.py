@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews, Album
-from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer, MangaRankingSerializer, AlbumSerializer
+from mangaApp.models import Manga, Chapter, Picture, FavouriteManga, Category, Banner, DayViews, Album, MangaUserRating
+from .serializers import BannerSerializer, ChapterSerializer, MangaSerializer, PictureSerializer, FavouriteMangaSerializer, CategorySerializer, MangaRankingSerializer, AlbumSerializer, MangaUserRatingSerializer
 from django.core.files.images import ImageFile
 from django.core.files import File as DjangoFile
 
@@ -294,13 +294,27 @@ def getMangaRanking(request):
     serializer = MangaRankingSerializer(mangas, many = True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getMangaUserRating(request, pk):
+    user = request.user
+    userRating = user.mangaRatings.get(id = pk)
+
+    serializer = MangaUserRatingSerializer(userRating)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def rateManga(request, pk):
+    user = request.user
     manga = Manga.objects.get(id = pk)
+    userRating, created = MangaUserRating.objects.get_or_create(user = user, manga = manga)
+
+    userRating.rating = request.data['rating']
     manga.totalStars += request.data['rating']
     manga.totalVotes += 1
     manga.save()
+    userRating.save()
 
 
     

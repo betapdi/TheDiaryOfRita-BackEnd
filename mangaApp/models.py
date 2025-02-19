@@ -24,8 +24,8 @@ class Manga(models.Model):
 		return self.name
 	
 class MangaUserRating(models.Model):
-	user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'mangaRating', null = True, default = None)
-	manga = models.ForeignKey(Manga, on_delete = models.CASCADE, related_name = 'userRating', null = True, default = None)
+	user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'mangaRatings', null = True, default = None)
+	manga = models.ForeignKey(Manga, on_delete = models.CASCADE, related_name = 'userRatings', null = True, default = None)
 	rating = models.PositiveSmallIntegerField(default = 0)
 
 	class Meta:
