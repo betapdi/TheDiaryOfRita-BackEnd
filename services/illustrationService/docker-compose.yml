@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  illustration-service:
+    build: .
+    container_name: "thediaryofrita-illustrationService"
+    ports:
+      - 5000:5000
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    ports:
+      - 27070:27017
